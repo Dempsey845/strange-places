@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bup0vjbivt4l2"]
+
+[ext_resource type="Texture2D" uid="uid://bkfbu536g6ulu" path="res://Assets/NPC/Modern_Exteriors_Characters_Postman_32x32_1.png" id="1_acqhf"]
+[ext_resource type="Script" uid="uid://c14t1ek3mwvsj" path="res://Scripts/npc.gd" id="1_xxsvc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxsvc"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(576, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6unj"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(608, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1ryf"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(640, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ig1v"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(672, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6atyd"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(704, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xkex"]
+atlas = ExtResource("1_acqhf")
+region = Rect2(736, 65, 32, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8gudg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxsvc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6unj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1ryf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ig1v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6atyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xkex")
+}],
+"loop": true,
+"name": &"front_idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qi7up"]
+radius = 12.0
+
+[node name="NPC" type="CharacterBody2D" unique_id=801174763]
+collision_mask = 0
+script = ExtResource("1_xxsvc")
+
+[node name="NPCSprite" type="AnimatedSprite2D" parent="." unique_id=1134249631]
+position = Vector2(0, -30)
+sprite_frames = SubResource("SpriteFrames_8gudg")
+animation = &"front_idle"
+autoplay = "front_idle"
+frame_progress = 0.890922
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=86087389]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_qi7up")
+
+[node name="NavAgent" type="NavigationAgent2D" parent="." unique_id=1854459028]
+unique_name_in_owner = true
+path_desired_distance = 15.0
+target_desired_distance = 15.0
+path_max_distance = 500.0
+debug_enabled = true
