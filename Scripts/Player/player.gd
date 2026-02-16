@@ -5,7 +5,7 @@ signal on_damage_taken(h: int)
 
 const SPEED := 200.0
 
-var health: int = 3
+var health: int = 5
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 
