@@ -387,6 +387,7 @@ animations = [{
 radius = 12.0
 
 [node name="NPC" type="CharacterBody2D" unique_id=801174763]
+collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_xxsvc")
 
@@ -396,7 +397,7 @@ position = Vector2(-1, -28)
 sprite_frames = SubResource("SpriteFrames_8gudg")
 animation = &"right_walk"
 autoplay = "front_idle"
-frame_progress = 0.874173
+frame_progress = 0.3201495
 script = ExtResource("3_g6unj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=86087389]
@@ -413,4 +414,9 @@ debug_enabled = true
 [node name="WanderWaitTimer" type="Timer" parent="." unique_id=1481256957]
 unique_name_in_owner = true
 wait_time = 3.0
+one_shot = true
+
+[node name="ChaseUpdateTimer" type="Timer" parent="." unique_id=1136015237]
+unique_name_in_owner = true
+wait_time = 0.5
 one_shot = true

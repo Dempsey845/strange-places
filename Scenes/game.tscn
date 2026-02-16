@@ -9965,9 +9965,10 @@ tile_set = ExtResource("3_3dryh")
 
 [node name="Player" parent="PropLayerWalls/PropLayer" unique_id=1960526676 instance=ExtResource("3_wrm1d")]
 y_sort_enabled = true
-position = Vector2(511, 259)
+position = Vector2(282, 318)
 
-[node name="NPC" parent="PropLayerWalls/PropLayer" unique_id=801174763 node_paths=PackedStringArray("game_manager") instance=ExtResource("6_i6g32")]
+[node name="NPC" parent="PropLayerWalls/PropLayer" unique_id=801174763 node_paths=PackedStringArray("game_manager", "chase_target") instance=ExtResource("6_i6g32")]
 y_sort_enabled = true
 position = Vector2(158, 351)
 game_manager = NodePath("../../..")
+chase_target = NodePath("../Player")

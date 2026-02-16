@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dymxf0txidqa8" path="res://Scripts/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://shdo26moa5c2" path="res://Assets/Player/Body_10_Ghost_Green_32x32.png" id="1_v0iea"]
+[ext_resource type="Script" uid="uid://dbnnl7mfesu32" path="res://Scripts/npc_interact_field.gd" id="2_vgqql"]
 [ext_resource type="Script" uid="uid://5xd6f71nyxtq" path="res://Scripts/player_sprite.gd" id="3_6t5aa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6t5aa"]
+radius = 91.08787
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
 atlas = ExtResource("1_v0iea")
@@ -389,12 +393,22 @@ radius = 16.03122
 [node name="Player" type="CharacterBody2D" unique_id=1960526676]
 script = ExtResource("1_cvnsp")
 
+[node name="NPCInteractField" type="Area2D" parent="." unique_id=890129711]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("2_vgqql")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCInteractField" unique_id=1543986597]
+position = Vector2(0, -14)
+shape = SubResource("CircleShape2D_6t5aa")
+debug_color = Color(0.8509804, 0.21176471, 0.7647059, 0.16862746)
+
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1043335760]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_8erm5")
-animation = &"right_walk"
+animation = &"front_walk"
 autoplay = "front_idle"
-frame_progress = 0.38203087
+frame_progress = 0.9721841
 script = ExtResource("3_6t5aa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1792742705]
