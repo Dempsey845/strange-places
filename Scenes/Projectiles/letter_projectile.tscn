@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://4soohxi4c0id"]
+
+[ext_resource type="PackedScene" uid="uid://bxqv1p486yic8" path="res://Scenes/Projectiles/base_projectile.tscn" id="1_nr4wn"]
+[ext_resource type="Texture2D" uid="uid://bdt33o2lfg6my" path="res://Assets/NPC/Postman/Letter.png" id="2_liqqf"]
+
+[node name="LetterProjectile" unique_id=1149445516 instance=ExtResource("1_nr4wn")]
+
+[node name="Letter" type="Sprite2D" parent="." index="1" unique_id=1776913156]
+rotation = 1.5707964
+texture = ExtResource("2_liqqf")

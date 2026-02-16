@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bup0vjbivt4l2"]
 
-[ext_resource type="Texture2D" uid="uid://bkfbu536g6ulu" path="res://Assets/NPC/Modern_Exteriors_Characters_Postman_32x32_1.png" id="1_acqhf"]
+[ext_resource type="Texture2D" uid="uid://bkfbu536g6ulu" path="res://Assets/NPC/Postman/Modern_Exteriors_Characters_Postman_32x32_1.png" id="1_acqhf"]
 [ext_resource type="Script" uid="uid://c14t1ek3mwvsj" path="res://Scripts/npc.gd" id="1_xxsvc"]
 [ext_resource type="Script" uid="uid://ci2b5qjnakigr" path="res://Scripts/npc_sprite.gd" id="3_g6unj"]
 
@@ -611,6 +611,10 @@ one_shot = true
 [node name="ChaseUpdateTimer" type="Timer" parent="." unique_id=1136015237]
 unique_name_in_owner = true
 wait_time = 0.5
+one_shot = true
+
+[node name="ChaseThrowCooldownTimer" type="Timer" parent="." unique_id=1987731440]
+unique_name_in_owner = true
 one_shot = true
 
 [node name="MeleeAttackCheckTimer" type="Timer" parent="." unique_id=430027691]

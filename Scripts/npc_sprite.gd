@@ -35,6 +35,9 @@ func _update_direction():
 			direction_state = "left"
 
 func play_melee_attack():
+	if state == "melee_attack":
+		return
+	
 	state = "melee_attack"
 	melee_attack_check_timer.start(melee_animation_attack_check_frame/melee_animation_fps)
 	await get_tree().create_timer(melee_animation_duration).timeout

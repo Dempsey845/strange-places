@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://be8qbmt0fe144" path="res://Scenes/player.tscn" id="3_wrm1d"]
 [ext_resource type="Texture2D" uid="uid://dj1m160ak1wb0" path="res://Assets/Tilesets/3_City_Props_32x32.png" id="4_wowpa"]
 [ext_resource type="PackedScene" uid="uid://bup0vjbivt4l2" path="res://Scenes/npc.tscn" id="6_i6g32"]
+[ext_resource type="PackedScene" uid="uid://4soohxi4c0id" path="res://Scenes/Projectiles/letter_projectile.tscn" id="8_v158k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v158k"]
 texture = ExtResource("3_1l0tm")
@@ -9972,3 +9973,4 @@ y_sort_enabled = true
 position = Vector2(158, 351)
 game_manager = NodePath("../../..")
 chase_target = NodePath("../Player")
+projectile_packed_scene = ExtResource("8_v158k")
