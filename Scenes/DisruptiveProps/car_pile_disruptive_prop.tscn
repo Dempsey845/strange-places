@@ -12,7 +12,7 @@ size = Vector2(113, 42)
 y_sort_enabled = true
 
 [node name="CollisionShape2D" parent="." index="0" unique_id=598281459]
-position = Vector2(1, -24)
+position = Vector2(0, -38)
 
 [node name="CarPileBody" type="StaticBody2D" parent="." index="2" unique_id=44999695]
 y_sort_enabled = true

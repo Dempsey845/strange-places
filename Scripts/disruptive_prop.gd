@@ -4,6 +4,7 @@ signal on_disrupted
 signal on_fixed
 
 @onready var fix_timer: Timer = %FixTimer
+@onready var disruption_manager: DisruptionManager = get_tree().current_scene.get_disruption_manager()
 
 @export var min_disruption_level := 10 # Minimum level of disruption for this item to be 'disrupted'
 @export var automatic_fix := true
@@ -32,6 +33,5 @@ func _on_fix_timer_timeout() -> void:
 	fix()
 
 func _on_area_entered(_area: Area2D) -> void:
-	var current_disruption_level = 30 # <-- testing only
-	if current_disruption_level >= min_disruption_level:
+	if disruption_manager.disruption_level >= min_disruption_level:
 		disrupt()

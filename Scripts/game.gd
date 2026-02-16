@@ -22,3 +22,6 @@ func get_random_nav_point(nav_agent: NavigationAgent2D) -> Vector2:
 	var valid_point = NavigationServer2D.map_get_closest_point(nav_map, random_point)
 	
 	return valid_point
+
+func get_disruption_manager() -> DisruptionManager:
+	return %DisruptionManager

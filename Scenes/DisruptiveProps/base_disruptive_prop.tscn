@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cxc8tq3o5kmcf" path="res://Scripts/disruptive_prop.gd" id="1_qcakx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p04t3"]
-radius = 72.00694
+radius = 71.11259
 
 [node name="BaseDisruptiveProp" type="Area2D" unique_id=2043950072]
 collision_layer = 0
