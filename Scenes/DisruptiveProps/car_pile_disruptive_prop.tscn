@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://du1vfdnq8ffcp"]
+
+[ext_resource type="PackedScene" uid="uid://5nh0xmf0hyb7" path="res://Scenes/DisruptiveProps/base_disruptive_prop.tscn" id="1_wu5ho"]
+[ext_resource type="Texture2D" uid="uid://dj1m160ak1wb0" path="res://Assets/Tilesets/3_City_Props_32x32.png" id="2_c7530"]
+[ext_resource type="PackedScene" uid="uid://u8hpaaum1lea" path="res://Scenes/ParticleEffects/fire_vfx.tscn" id="3_sxj4f"]
+[ext_resource type="PackedScene" uid="uid://dosg72bjfwwd8" path="res://Scenes/ParticleEffects/explosion_vfx.tscn" id="4_fcakp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sxj4f"]
+size = Vector2(113, 42)
+
+[node name="CarPileDisruptiveProp" unique_id=2043950072 instance=ExtResource("1_wu5ho")]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=598281459]
+position = Vector2(1, -24)
+
+[node name="CarPileBody" type="StaticBody2D" parent="." index="2" unique_id=44999695]
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CarPileBody" index="0" unique_id=617711819]
+position = Vector2(0, -60)
+texture = ExtResource("2_c7530")
+region_enabled = true
+region_rect = Rect2(356.08353, 2022.0225, 124.07486, 113.910645)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CarPileBody" index="1" unique_id=1959509790]
+position = Vector2(-0.5, -21)
+shape = SubResource("RectangleShape2D_sxj4f")
+
+[node name="FireVFX" parent="." index="3" unique_id=963626600 instance=ExtResource("3_sxj4f")]
+
+[node name="ExplosionVFX" parent="." index="4" unique_id=1582397214 instance=ExtResource("4_fcakp")]

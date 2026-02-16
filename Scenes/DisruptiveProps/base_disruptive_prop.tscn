@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://5nh0xmf0hyb7"]
+
+[ext_resource type="Script" uid="uid://cxc8tq3o5kmcf" path="res://Scripts/disruptive_prop.gd" id="1_qcakx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p04t3"]
+radius = 72.00694
+
+[node name="BaseDisruptiveProp" type="Area2D" unique_id=2043950072]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_qcakx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=598281459]
+shape = SubResource("CircleShape2D_p04t3")
+
+[node name="FixTimer" type="Timer" parent="." unique_id=458681144]
+unique_name_in_owner = true
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="FixTimer" to="." method="_on_fix_timer_timeout"]
