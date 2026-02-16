@@ -4,10 +4,17 @@ class_name NPC extends CharacterBody2D
 @onready var wander_wait_timer: Timer = %WanderWaitTimer
 @onready var chase_update_timer: Timer = %ChaseUpdateTimer
 @onready var npc_sprite: NPCSprite = %NPCSprite
+@onready var melee_attack_area: Area2D = %MeleeAttackArea
 
 @export var speed: float = 150.0
 @export var game_manager: GameManager
+
+@export_category("Chase")
 @export var chase_target: Node2D = null
+
+@export var melee_attack_distance: float = 45.0
+@onready var melee_attack_distance_sq = melee_attack_distance * melee_attack_distance
+
 @export var max_chase_distance: float = 300.0
 @onready var max_chase_distance_sq = max_chase_distance * max_chase_distance
 
@@ -17,7 +24,7 @@ enum AI_STATE {
 }
 
 var is_navigating = false
-var state := AI_STATE.Chase
+var state := AI_STATE.Wander
 
 
 func _ready():
@@ -45,6 +52,9 @@ func _chase():
 		if distance_to_target > max_chase_distance_sq:
 			state = AI_STATE.Wander
 			return
+		elif distance_to_target < melee_attack_distance_sq:
+			nav_agent.target_position = global_position
+			npc_sprite.play_melee_attack()
 			
 		chase_update_timer.start()
 
@@ -72,3 +82,10 @@ func _handle_navigation():
 func _on_velocity_computed(safe_velocity: Vector2):
 	velocity = safe_velocity
 	move_and_slide()
+
+
+func _on_melee_attack_check_timer_timeout() -> void:
+	var overlapping_areas = melee_attack_area.get_overlapping_areas()
+	if overlapping_areas.size() > 0:
+		print("Hit Player!")
+		

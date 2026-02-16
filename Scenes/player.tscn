@@ -5,8 +5,14 @@
 [ext_resource type="Script" uid="uid://dbnnl7mfesu32" path="res://Scripts/npc_interact_field.gd" id="2_vgqql"]
 [ext_resource type="Script" uid="uid://5xd6f71nyxtq" path="res://Scripts/player_sprite.gd" id="3_6t5aa"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
+radius = 18.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_6t5aa"]
 radius = 91.08787
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v0iea"]
+radius = 16.03122
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8erm5"]
 atlas = ExtResource("1_v0iea")
@@ -387,11 +393,17 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_v0iea"]
-radius = 16.03122
-
 [node name="Player" type="CharacterBody2D" unique_id=1960526676]
 script = ExtResource("1_cvnsp")
+
+[node name="PlayerHitbox" type="Area2D" parent="." unique_id=1820175709]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerHitbox" unique_id=1624560903]
+position = Vector2(0, -16)
+shape = SubResource("CircleShape2D_vgqql")
+debug_color = Color(0, 0.62842774, 0.19767305, 0.22352941)
 
 [node name="NPCInteractField" type="Area2D" parent="." unique_id=890129711]
 collision_layer = 0
@@ -403,14 +415,16 @@ position = Vector2(0, -14)
 shape = SubResource("CircleShape2D_6t5aa")
 debug_color = Color(0.8509804, 0.21176471, 0.7647059, 0.16862746)
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1792742705]
+position = Vector2(0, -15)
+shape = SubResource("CircleShape2D_v0iea")
+
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1043335760]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_8erm5")
 animation = &"front_walk"
 autoplay = "front_idle"
-frame_progress = 0.9721841
+frame_progress = 0.29072788
 script = ExtResource("3_6t5aa")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1792742705]
-position = Vector2(0, -15)
-shape = SubResource("CircleShape2D_v0iea")
+[connection signal="body_entered" from="NPCInteractField" to="NPCInteractField" method="_on_body_entered"]
