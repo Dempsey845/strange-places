@@ -55,6 +55,9 @@ func _process(_delta: float) -> void:
 	npc_sprite.is_moving = is_navigating
 
 func _handle_attack_state():
+	if chase_target == null:
+		return
+	
 	match (attack_state):
 		ATTACK_STATE.Melee:	
 			nav_agent.target_position = global_position

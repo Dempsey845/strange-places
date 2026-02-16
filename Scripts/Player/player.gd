@@ -16,3 +16,6 @@ func _physics_process(_delta: float) -> void:
 func take_damage(damage: int):
 	player_sprite.play_hurt_animation()
 	health -= damage
+	
+	if health <= 0:
+		queue_free()
