@@ -1,4 +1,4 @@
-class_name PlayerSprite extends AnimatedSprite2D
+class_name NPCSprite extends AnimatedSprite2D
 
 var direction: Vector2
 var last_direction: Vector2
