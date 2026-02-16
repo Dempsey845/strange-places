@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bup0vjbivt4l2"]
 
 [ext_resource type="Texture2D" uid="uid://bkfbu536g6ulu" path="res://Assets/NPC/Postman/Modern_Exteriors_Characters_Postman_32x32_1.png" id="1_acqhf"]
-[ext_resource type="Script" uid="uid://c14t1ek3mwvsj" path="res://Scripts/npc.gd" id="1_xxsvc"]
-[ext_resource type="Script" uid="uid://ci2b5qjnakigr" path="res://Scripts/npc_sprite.gd" id="3_g6unj"]
+[ext_resource type="Script" uid="uid://c14t1ek3mwvsj" path="res://Scripts/NPC/npc.gd" id="1_xxsvc"]
+[ext_resource type="Script" uid="uid://ci2b5qjnakigr" path="res://Scripts/NPC/npc_sprite.gd" id="3_g6unj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8gudg"]
 atlas = ExtResource("1_acqhf")

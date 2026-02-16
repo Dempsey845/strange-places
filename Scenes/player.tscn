@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://be8qbmt0fe144"]
 
-[ext_resource type="Script" uid="uid://dymxf0txidqa8" path="res://Scripts/player.gd" id="1_cvnsp"]
+[ext_resource type="Script" uid="uid://dymxf0txidqa8" path="res://Scripts/Player/player.gd" id="1_cvnsp"]
 [ext_resource type="Texture2D" uid="uid://shdo26moa5c2" path="res://Assets/Player/Body_10_Ghost_Green_32x32.png" id="1_v0iea"]
-[ext_resource type="Script" uid="uid://c5p4dkuvp1obu" path="res://Scripts/player_hitbox.gd" id="2_fkybt"]
-[ext_resource type="Script" uid="uid://dbnnl7mfesu32" path="res://Scripts/npc_interact_field.gd" id="2_vgqql"]
-[ext_resource type="Script" uid="uid://5xd6f71nyxtq" path="res://Scripts/player_sprite.gd" id="3_6t5aa"]
+[ext_resource type="Script" uid="uid://c5p4dkuvp1obu" path="res://Scripts/Player/player_hitbox.gd" id="2_fkybt"]
+[ext_resource type="Script" uid="uid://dbnnl7mfesu32" path="res://Scripts/Player/npc_interact_field.gd" id="2_vgqql"]
+[ext_resource type="Script" uid="uid://5xd6f71nyxtq" path="res://Scripts/Player/player_sprite.gd" id="3_6t5aa"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
 radius = 18.0
