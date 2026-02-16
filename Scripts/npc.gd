@@ -87,5 +87,5 @@ func _on_velocity_computed(safe_velocity: Vector2):
 func _on_melee_attack_check_timer_timeout() -> void:
 	var overlapping_areas = melee_attack_area.get_overlapping_areas()
 	if overlapping_areas.size() > 0:
-		print("Hit Player!")
-		
+		var player_hitbox: PlayerHitbox = overlapping_areas[0]
+		player_hitbox.take_damage(1)

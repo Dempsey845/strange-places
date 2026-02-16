@@ -8,8 +8,13 @@ var direction_state = "front"
 
 var is_moving := false
 
+var state = "idle"
+
+const HURT_ANIM_COUNT = 3
+const HURT_ANIM_FPS = 10.0
+
 func _physics_process(_delta: float) -> void:
-		var move_state = "walk" if is_moving else "idle"
+		state = ("walk" if is_moving else "idle") if state!="hurt" else "hurt"
 		
 		if (abs(direction.y) > abs(direction.x)):
 			if direction.y > 0:
@@ -22,4 +27,9 @@ func _physics_process(_delta: float) -> void:
 			elif direction.x < 0:
 				direction_state = "left"
 		
-		play(direction_state+"_"+move_state)
+		play(direction_state+"_"+state)
+
+func play_hurt_animation():
+	state = "hurt"
+	await get_tree().create_timer(HURT_ANIM_COUNT/HURT_ANIM_FPS).timeout
+	state = "idle"

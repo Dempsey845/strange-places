@@ -2,6 +2,8 @@ class_name Player extends CharacterBody2D
 
 const SPEED = 200.0
 
+var health = 3
+
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 
 func _physics_process(_delta: float) -> void:
@@ -10,3 +12,7 @@ func _physics_process(_delta: float) -> void:
 	player_sprite.direction = direction
 	player_sprite.is_moving = velocity != Vector2.ZERO
 	move_and_slide()
+
+func take_damage(damage: int):
+	player_sprite.play_hurt_animation()
+	health -= damage
