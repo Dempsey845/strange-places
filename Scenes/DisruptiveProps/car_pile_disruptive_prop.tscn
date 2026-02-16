@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://5nh0xmf0hyb7" path="res://Scenes/DisruptiveProps/base_disruptive_prop.tscn" id="1_wu5ho"]
 [ext_resource type="Texture2D" uid="uid://dj1m160ak1wb0" path="res://Assets/Tilesets/3_City_Props_32x32.png" id="2_c7530"]
-[ext_resource type="PackedScene" uid="uid://u8hpaaum1lea" path="res://Scenes/ParticleEffects/fire_vfx.tscn" id="3_sxj4f"]
-[ext_resource type="PackedScene" uid="uid://dosg72bjfwwd8" path="res://Scenes/ParticleEffects/explosion_vfx.tscn" id="4_fcakp"]
+[ext_resource type="PackedScene" uid="uid://cvovbjlkrsi2s" path="res://Scenes/VFXAnimations/explosion_animation.tscn" id="3_sxj4f"]
+[ext_resource type="PackedScene" uid="uid://cyxmsj1n81d0x" path="res://Scenes/VFXAnimations/fire_animation.tscn" id="4_fcakp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxj4f"]
 size = Vector2(113, 42)
@@ -27,6 +27,19 @@ region_rect = Rect2(356.08353, 2022.0225, 124.07486, 113.910645)
 position = Vector2(-0.5, -21)
 shape = SubResource("RectangleShape2D_sxj4f")
 
-[node name="FireVFX" parent="." index="3" unique_id=963626600 instance=ExtResource("3_sxj4f")]
+[node name="ExplosionAnimation" parent="." index="3" unique_id=1359717161 instance=ExtResource("3_sxj4f")]
 
-[node name="ExplosionVFX" parent="." index="4" unique_id=1582397214 instance=ExtResource("4_fcakp")]
+[node name="FireAnimation" parent="." index="4" unique_id=1332643254 instance=ExtResource("4_fcakp")]
+position = Vector2(-53, 0)
+
+[node name="FireAnimation2" parent="." index="5" unique_id=194007741 instance=ExtResource("4_fcakp")]
+position = Vector2(-27, 0)
+
+[node name="FireAnimation3" parent="." index="6" unique_id=253249212 instance=ExtResource("4_fcakp")]
+position = Vector2(-1, 0)
+
+[node name="FireAnimation4" parent="." index="7" unique_id=571489875 instance=ExtResource("4_fcakp")]
+position = Vector2(24, 0)
+
+[node name="FireAnimation5" parent="." index="8" unique_id=1521963646 instance=ExtResource("4_fcakp")]
+position = Vector2(49, 0)

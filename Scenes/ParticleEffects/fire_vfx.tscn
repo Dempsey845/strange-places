@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://u8hpaaum1lea"]
 
-[ext_resource type="Script" uid="uid://dx6sm41e5jynr" path="res://Scripts/Disruption/disruptive_vfx.gd" id="1_scc0x"]
+[ext_resource type="Script" uid="uid://dx6sm41e5jynr" path="res://Scripts/Disruption/VFX/disruptive_vfx.gd" id="1_scc0x"]
 
 [sub_resource type="Curve" id="Curve_c7530"]
 _data = [Vector2(0.05851064, 0), 0.0, 0.0, 0, 0, Vector2(0.08510638, 1), 0.0, 0.0, 0, 0, Vector2(0.81382984, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
