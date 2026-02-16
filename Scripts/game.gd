@@ -25,3 +25,11 @@ func get_random_nav_point(nav_agent: NavigationAgent2D) -> Vector2:
 
 func get_disruption_manager() -> DisruptionManager:
 	return %DisruptionManager
+
+
+func _on_player_on_death() -> void:
+	await get_tree().create_timer(2.0).timeout
+	call_deferred("_go_to_menu")
+	
+func _go_to_menu():
+	SceneManager.change_scene("res://Scenes/menu.tscn")

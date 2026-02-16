@@ -1,8 +1,11 @@
 class_name Player extends CharacterBody2D
 
-const SPEED = 200.0
+signal on_death
+signal on_damage_taken(h: int)
 
-var health = 3
+const SPEED := 200.0
+
+var health: int = 3
 
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 
@@ -17,5 +20,8 @@ func take_damage(damage: int):
 	player_sprite.play_hurt_animation()
 	health -= damage
 	
+	on_damage_taken.emit(health)
+	
 	if health <= 0:
+		on_death.emit()
 		queue_free()

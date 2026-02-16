@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://baqn3yejnvrpj"]
+
+[ext_resource type="Script" uid="uid://pc8su8titmmt" path="res://Scripts/menu.gd" id="1_1rerr"]
+[ext_resource type="Script" uid="uid://c05m6xc8c2mg1" path="res://Scripts/menu_options.gd" id="2_xhh6f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_u4yt8"]
+font_size = 80
+
+[node name="Menu" type="Node2D" unique_id=1079503908]
+script = ExtResource("1_1rerr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1526815455]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=1966624125]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Disruption"
+label_settings = SubResource("LabelSettings_u4yt8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuOptions" type="VBoxContainer" parent="CanvasLayer" unique_id=1333114300]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -141.0
+offset_top = -141.0
+offset_right = 141.0
+offset_bottom = 141.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+alignment = 1
+script = ExtResource("2_xhh6f")
+
+[node name="PlayButton" type="Button" parent="CanvasLayer/MenuOptions" unique_id=420036011]
+layout_mode = 2
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="CanvasLayer/MenuOptions" unique_id=22086186]
+layout_mode = 2
+text = "Settings"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/MenuOptions" unique_id=149580213]
+layout_mode = 2
+text = "Exit"
+
+[connection signal="pressed" from="CanvasLayer/MenuOptions/PlayButton" to="CanvasLayer/MenuOptions" method="_on_play_button_pressed"]

@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://du1vfdnq8ffcp" path="res://Scenes/DisruptiveProps/car_pile_disruptive_prop.tscn" id="9_h4fw4"]
 [ext_resource type="Script" uid="uid://c1uxf6pv6ph7o" path="res://Scripts/Disruption/disruption_manager.gd" id="10_ldgsr"]
 [ext_resource type="Script" uid="uid://l0bohhmyugke" path="res://Scripts/Disruption/disruption_progress_bar.gd" id="11_o5yvi"]
+[ext_resource type="Script" uid="uid://bor7ijdfsw3ug" path="res://Scripts/Player/player_health_progress_bar.gd" id="12_rku1e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v158k"]
 texture = ExtResource("3_1l0tm")
@@ -9917,6 +9918,12 @@ sources/0 = SubResource("TileSetAtlasSource_i6g32")
 a = Vector2(-0.90075684, -1.09021)
 b = Vector2(44.711082, 174.0199)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rfjv2"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1phco"]
+bg_color = Color(0.6, 0, 0, 1)
+
 [node name="Game" type="Node2D" unique_id=450333668]
 script = ExtResource("1_ebmjs")
 
@@ -9978,6 +9985,7 @@ position = Vector2(1027, 545)
 automatic_fix = false
 
 [node name="Player" parent="PropLayerWalls/PropLayer" unique_id=1960526676 instance=ExtResource("3_wrm1d")]
+unique_name_in_owner = true
 y_sort_enabled = true
 position = Vector2(282, 318)
 
@@ -10013,3 +10021,22 @@ offset_right = 0.43197632
 offset_bottom = -0.21600151
 grow_horizontal = 2
 script = ExtResource("11_o5yvi")
+
+[node name="PlayerCanvasLayer" type="CanvasLayer" parent="." unique_id=976610525]
+
+[node name="PlayerHealthProgressBar" type="ProgressBar" parent="PlayerCanvasLayer" unique_id=416375173]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -272.0
+offset_bottom = 27.0
+grow_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_rfjv2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1phco")
+max_value = 5.0
+step = 1.0
+value = 5.0
+show_percentage = false
+script = ExtResource("12_rku1e")
+
+[connection signal="on_death" from="PropLayerWalls/PropLayer/Player" to="." method="_on_player_on_death"]
