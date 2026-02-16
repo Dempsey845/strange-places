@@ -58,6 +58,7 @@ func _handle_attack_state():
 	match (attack_state):
 		ATTACK_STATE.Melee:	
 			nav_agent.target_position = global_position
+			npc_sprite.direction = global_position.direction_to(chase_target.global_position)
 			npc_sprite.play_melee_attack()
 		ATTACK_STATE.Throw:
 			if chase_throw_cooldown_timer.is_stopped():
