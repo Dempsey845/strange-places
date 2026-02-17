@@ -601,6 +601,7 @@ unique_name_in_owner = true
 path_desired_distance = 15.0
 target_desired_distance = 15.0
 path_max_distance = 500.0
+path_postprocessing = 1
 avoidance_enabled = true
 debug_enabled = true
 

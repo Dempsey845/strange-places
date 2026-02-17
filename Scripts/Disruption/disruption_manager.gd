@@ -1,6 +1,6 @@
 class_name DisruptionManager extends Node
 
-@export var disruption_increment: float = 10
+@export var disruption_increment: float = .03
 var disruption_level: float = 0.0 # 0 - 100
 
 func _process(delta: float) -> void:

@@ -528,8 +528,10 @@ shape = SubResource("CircleShape2D_v0iea")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1043335760]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_8erm5")
-animation = &"left_hurt"
+animation = &"back_hurt"
 autoplay = "front_idle"
+frame = 2
+frame_progress = 1.0
 script = ExtResource("3_6t5aa")
 
 [connection signal="body_entered" from="NPCInteractField" to="NPCInteractField" method="_on_body_entered"]
