@@ -22,6 +22,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if freezed:
 		velocity = Vector2.ZERO
+		player_sprite.is_moving = false
 		return
 	
 	var direction = Input.get_vector("left", "right", "up", "down")
