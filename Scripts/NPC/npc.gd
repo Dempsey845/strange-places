@@ -21,7 +21,7 @@ class_name NPC extends CharacterBody2D
 @export var projectile_packed_scene: PackedScene
 
 @export_category("Wander")
-@export var random_wander := false
+@export var mixed_wander := true # random + hot spots
 @onready var hot_spots: HotSpots = get_tree().current_scene.hot_spots
 var last_hot_spot = null
 
@@ -113,6 +113,8 @@ func _wander():
 		_next_wander_point()
 
 func _next_wander_point():
+	var random_wander = not mixed_wander or randi() % 2 == 1
+	
 	if random_wander:
 			nav_agent.target_position = game_manager.get_random_nav_point(nav_agent)
 	else:
