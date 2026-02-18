@@ -20,6 +20,11 @@ class_name NPC extends CharacterBody2D
 
 @export var projectile_packed_scene: PackedScene
 
+@export_category("Wander")
+@export var random_wander := false
+@onready var hot_spots: HotSpots = get_tree().current_scene.hot_spots
+var last_hot_spot = null
+
 enum AI_STATE {
 	Wander,
 	Chase
@@ -101,11 +106,22 @@ func _chase():
 
 func _wander():
 	if nav_agent.target_position == Vector2.ZERO:
-		nav_agent.target_position = game_manager.get_random_nav_point(nav_agent)
+		_next_wander_point()
 	elif not is_navigating and wander_wait_timer.is_stopped():
 		wander_wait_timer.start()
 		await wander_wait_timer.timeout
-		nav_agent.target_position = game_manager.get_random_nav_point(nav_agent)
+		_next_wander_point()
+
+func _next_wander_point():
+	if random_wander:
+			nav_agent.target_position = game_manager.get_random_nav_point(nav_agent)
+	else:
+		if last_hot_spot == null:
+			nav_agent.target_position = hot_spots.get_random_hot_spot(nav_agent)
+		else:
+			var next_hot_spot = hot_spots.get_random_hot_spot(nav_agent)
+			while last_hot_spot != next_hot_spot:
+				next_hot_spot = hot_spots.get_random_hot_spot(nav_agent)
 
 func _handle_navigation():
 	if nav_agent.is_navigation_finished():

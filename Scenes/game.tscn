@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://l0bohhmyugke" path="res://Scripts/Disruption/disruption_progress_bar.gd" id="11_o5yvi"]
 [ext_resource type="Script" uid="uid://dshsgfb0bu50v" path="res://Scripts/Objective/objective_manager.gd" id="12_nb51f"]
 [ext_resource type="Script" uid="uid://bor7ijdfsw3ug" path="res://Scripts/Player/player_health_progress_bar.gd" id="12_rku1e"]
+[ext_resource type="Script" uid="uid://bttsrf2pwspp4" path="res://Scripts/NPC/hot_spots.gd" id="13_7t8sx"]
 [ext_resource type="Script" uid="uid://u8fsrsnv0ods" path="res://Scripts/Objective/objective.gd" id="13_nnt18"]
 [ext_resource type="Script" uid="uid://b2evj4b00ecq4" path="res://Scripts/Dialogue/dialogue_manager.gd" id="15_85qyi"]
 [ext_resource type="Script" uid="uid://ebv4l5o4unk4" path="res://Scripts/Dialogue/dialogue.gd" id="16_iivbl"]
@@ -141,8 +142,9 @@ _data = {
 &"open": SubResource("Animation_7nbq1")
 }
 
-[node name="Game" type="Node2D" unique_id=450333668]
+[node name="Game" type="Node2D" unique_id=450333668 node_paths=PackedStringArray("hot_spots")]
 script = ExtResource("1_ebmjs")
+hot_spots = NodePath("HotSpots")
 
 [node name="Bounds" type="Node2D" parent="." unique_id=1537326139]
 
@@ -458,6 +460,27 @@ position = Vector2(558, -732)
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PropLayerWalls/StaticBodies/MilitaryBaseBodies/TowerB" unique_id=1400751120]
 polygon = PackedVector2Array(-99, -271, -112, -240, -110, -111, -94, -97, -105, -11, -65, -10, -81, -60, -23, -88, -25, -28, 25, -27, 23, -86, 77, -59, 69, -14, 105, -13, 95, -34, 90, -97, 110, -113, 110, -242, 97, -271)
 
+[node name="HotSpots" type="Node2D" parent="." unique_id=190108257]
+script = ExtResource("13_7t8sx")
+
+[node name="CoffeeAndTeaSpot" type="Marker2D" parent="HotSpots" unique_id=7266805]
+position = Vector2(867, 1125)
+
+[node name="IceCreamHutSpot" type="Marker2D" parent="HotSpots" unique_id=955237709]
+position = Vector2(1362, 550)
+
+[node name="IceCreamShopSpot" type="Marker2D" parent="HotSpots" unique_id=1931871440]
+position = Vector2(655, 459)
+
+[node name="BakerySpot" type="Marker2D" parent="HotSpots" unique_id=1151018335]
+position = Vector2(180, 557)
+
+[node name="HardwareSpot" type="Marker2D" parent="HotSpots" unique_id=594085791]
+position = Vector2(1279, 1222)
+
+[node name="MushroomSpot" type="Marker2D" parent="HotSpots" unique_id=1743873760]
+position = Vector2(895, 1674)
+
 [node name="DisruptionManager" type="Node" parent="." unique_id=1928967995]
 unique_name_in_owner = true
 script = ExtResource("10_ldgsr")
@@ -489,34 +512,29 @@ dialogue_animation_player = NodePath("../DialogueCanvasLayer/DialogueAnimationPl
 [node name="Dialogue_Jimmy1" type="Node" parent="DialogueManager" unique_id=1772581048]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Hello! My name is Jimmy the Barista.", "It looks like you could do with a coffee.", "Well you've come to the wrong place!", "I'm waiting on Bob to deliver the coffee beans but it looks like he's busy...", "If you'd like a coffee sooner you could go collect them for me?", "He runs the ice cream hut up the road.", "Don't be confused with the store right next to it!"])
-time_between_text = 0.1
-time_between_next_dialogue = 0.1
+time_between_text = 0.5
 
 [node name="Dialogue_Player1" type="Node" parent="DialogueManager" unique_id=1804765360 node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Hi! Jimmy sent me for his coffee beans.", "He told me you've got your work cut out for you!"])
-time_between_text = 0.1
+time_between_text = 0.5
 next_dialogue = NodePath("../Dialogue_Bob1")
-time_between_next_dialogue = 0.1
 
 [node name="Dialogue_Bob1" type="Node" parent="DialogueManager" unique_id=978622349]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["I appreciate you coming to collect.", "It's been one busy day...", "Hey, if your still in a helping mood, i've got a job for you.", "I will chuck some cash your way!", "Just stop on by after if your interested.", "Here is the coffee beans."])
-time_between_text = 0.1
-time_between_next_dialogue = 0.1
+time_between_text = 0.5
 
 [node name="Dialogue_Player2" type="Node" parent="DialogueManager" unique_id=677644783 node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Hey Jimmy, here are those beans you asked for."])
-time_between_text = 0.1
+time_between_text = 0.5
 next_dialogue = NodePath("../Dialogue_Jimmy2")
-time_between_next_dialogue = 0.1
 
 [node name="Dialogue_Jimmy2" type="Node" parent="DialogueManager" unique_id=1782226169]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Thank you so much!", "Take this free coffee for the hard work!", "If your looking for cash, Bob is your guy.", "He's always looking for help. Thanks again."])
-time_between_text = 0.1
-time_between_next_dialogue = 0.1
+time_between_text = 0.5
 
 [node name="InventoryManager" type="Node" parent="." unique_id=1575074779 node_paths=PackedStringArray("inventory_container")]
 script = ExtResource("18_exi56")

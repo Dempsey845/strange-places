@@ -2,6 +2,8 @@ class_name GameManager extends Node2D
 
 @onready var bounds = [%TopLeft, %TopRight, %BottomLeft, %BottomRight]
 
+@export var hot_spots: HotSpots
+
 func get_random_nav_point(nav_agent: NavigationAgent2D) -> Vector2:
 	var top_left = bounds[0].global_position
 	var top_right = bounds[1].global_position

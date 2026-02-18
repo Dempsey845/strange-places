@@ -7,7 +7,7 @@ signal on_dialogue_ended(dialogue: Dialogue)
 @export var dialogue_label: Label
 @export var dialogue_animation_player: AnimationPlayer
 
-var typing_speed := 0.015
+var typing_speed := 0.04
 var untyping_speed := 0.01
 var is_typing := false
 var skip_requested := false
