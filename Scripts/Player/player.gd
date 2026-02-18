@@ -6,10 +6,24 @@ signal on_damage_taken(h: int)
 const SPEED := 200.0
 
 var health: int = 5
+var freezed := false
 
+@export var dialogue_manager: DialogueManager
 @onready var player_sprite: PlayerSprite = $PlayerSprite
 
+func _ready() -> void:
+	if not dialogue_manager:
+		push_warning("Player not assigned dialogue manager! This will cause issues with freezing the player on dialogues.")
+		return
+	
+	dialogue_manager.on_dialogue_started.connect(func(d: Dialogue): freezed = d.freeze_player)
+	dialogue_manager.on_dialogue_ended.connect(func(_d: Dialogue): freezed = false)
+
 func _physics_process(_delta: float) -> void:
+	if freezed:
+		velocity = Vector2.ZERO
+		return
+	
 	var direction = Input.get_vector("left", "right", "up", "down")
 	velocity = direction * SPEED
 	player_sprite.direction = direction

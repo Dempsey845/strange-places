@@ -100,6 +100,9 @@ func _chase():
 		chase_update_timer.start()
 
 func _wander():
+	if not nav_agent.is_target_reachable():
+		nav_agent.target_position = game_manager.get_random_nav_point(nav_agent)
+	
 	if nav_agent.target_position == Vector2.ZERO:
 		nav_agent.target_position = game_manager.get_random_nav_point(nav_agent)
 	elif not is_navigating and wander_wait_timer.is_stopped():
