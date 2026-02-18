@@ -7,12 +7,12 @@ signal on_dialogue_ended(dialogue: Dialogue)
 @export var dialogue_label: Label
 @export var dialogue_animation_player: AnimationPlayer
 
-var typing_speed := 0.045
+var typing_speed := 0.015
 var untyping_speed := 0.01
 var is_typing := false
 var skip_requested := false
 
-func start_dialogue(dialogue: Dialogue) -> void:
+func start_dialogue(dialogue: Dialogue, _prev_dialogue: Dialogue = null) -> void:
 	on_dialogue_started.emit(dialogue)
 	dialogue_animation_player.play("open")
 	await dialogue_animation_player.animation_finished
@@ -24,8 +24,10 @@ func start_dialogue(dialogue: Dialogue) -> void:
 	
 	if dialogue.next_dialogue:
 		await get_tree().create_timer(dialogue.time_between_next_dialogue).timeout
-		start_dialogue(dialogue.next_dialogue)
+		start_dialogue(dialogue.next_dialogue, dialogue)
 	else:
+		if _prev_dialogue:
+			_prev_dialogue.on_next_dialogue_complete.emit()
 		on_dialogue_ended.emit(dialogue)
 
 func type_text(full_text: String) -> void:
