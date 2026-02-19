@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://dwryihfd2hcap"]
+
+[ext_resource type="Texture2D" uid="uid://cn3dhsj4sji6y" path="res://Assets/NPC/Modern_Exteriors_Characters_Scout_32x32_2.png" id="1_bcmry"]
+[ext_resource type="Script" uid="uid://cm88td4pcm6ww" path="res://Scripts/Zones/justin_interact_zone.gd" id="2_6wq1r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bcmry"]
+radius = 28.01785
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8ilc"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(576, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0f4on"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(608, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wq1r"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(640, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tfia"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(672, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dmo24"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(704, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jr2j0"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(736, 65, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5n1p"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(96, 390, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnumx"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(128, 390, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uwexn"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(160, 390, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o63nj"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(192, 390, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58l5y"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(224, 390, 32, 65)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvgcy"]
+atlas = ExtResource("1_bcmry")
+region = Rect2(256, 390, 32, 65)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0n2dv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8ilc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0f4on")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wq1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tfia")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dmo24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jr2j0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5n1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnumx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uwexn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o63nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58l5y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvgcy")
+}],
+"loop": true,
+"name": &"idle_phone",
+"speed": 10.0
+}]
+
+[node name="JustinNPC" type="Area2D" unique_id=1511953683]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("2_6wq1r")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=856192471]
+shape = SubResource("CircleShape2D_bcmry")
+
+[node name="JustinAnimatedSprite" type="AnimatedSprite2D" parent="." unique_id=18569704]
+unique_name_in_owner = true
+position = Vector2(0, -25)
+sprite_frames = SubResource("SpriteFrames_0n2dv")
+animation = &"idle_phone"
+autoplay = "idle_phone"
+frame_progress = 0.96522766

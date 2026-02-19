@@ -15,6 +15,7 @@ var skip_requested := false
 func start_dialogue(dialogue: Dialogue, _prev_dialogue: Dialogue = null) -> void:
 	on_dialogue_started.emit(dialogue)
 	dialogue_animation_player.play("open")
+	dialogue.has_started = true
 	await dialogue_animation_player.animation_finished
 	for text in dialogue.dialogue_text:
 		await type_text(text)
@@ -28,6 +29,7 @@ func start_dialogue(dialogue: Dialogue, _prev_dialogue: Dialogue = null) -> void
 	else:
 		if _prev_dialogue:
 			_prev_dialogue.on_next_dialogue_complete.emit()
+		dialogue.on_dialogue_complete.emit()
 		on_dialogue_ended.emit(dialogue)
 
 func type_text(full_text: String) -> void:
