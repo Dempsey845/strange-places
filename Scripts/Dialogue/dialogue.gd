@@ -10,5 +10,6 @@ signal on_dialogue_complete
 @export var next_dialogue: Dialogue
 @export var time_between_next_dialogue := 1.5
 @export var freeze_player := true
+@export var auto_continue := true
 
 var has_started := false

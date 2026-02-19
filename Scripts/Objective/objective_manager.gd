@@ -4,7 +4,7 @@ class_name ObjectiveManager extends Node
 
 var current_objective: Objective
 
-@onready var first_objective: Objective = get_child(4)
+@onready var first_objective: Objective = get_child(0)
 
 func _ready() -> void:
 	first_objective.start_objective()
