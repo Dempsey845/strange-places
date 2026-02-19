@@ -234,6 +234,15 @@ y_sort_enabled = true
 [node name="CarPileDisruptiveProp" parent="PropLayerWalls/PropLayer/DisruptiveProps" unique_id=2043950072 instance=ExtResource("7_1phco")]
 position = Vector2(1558, 1037)
 
+[node name="ObjectiveNPCs" type="Node2D" parent="PropLayerWalls/PropLayer" unique_id=806330581]
+
+[node name="JustinNPC" parent="PropLayerWalls/PropLayer/ObjectiveNPCs" unique_id=2056703171 node_paths=PackedStringArray("poach_justin_objective", "player_justin_dialogue_1", "dialogue_manager", "justin_dialogue_2") instance=ExtResource("14_vm72l")]
+position = Vector2(594, 459)
+poach_justin_objective = NodePath("../../../../ObjectiveManager/Objective5_PoachJustin")
+player_justin_dialogue_1 = NodePath("../../../../DialogueManager/Section2/Dialogue_Player3")
+dialogue_manager = NodePath("../../../../DialogueManager")
+justin_dialogue_2 = NodePath("../../../../DialogueManager/Section2/Dialogue_Justin2")
+
 [node name="Player" parent="PropLayerWalls/PropLayer" unique_id=1960526676 node_paths=PackedStringArray("dialogue_manager") instance=ExtResource("3_wrm1d")]
 unique_name_in_owner = true
 y_sort_enabled = true
@@ -489,15 +498,6 @@ position = Vector2(1279, 1222)
 
 [node name="MushroomSpot" type="Marker2D" parent="HotSpots" unique_id=1743873760]
 position = Vector2(895, 1674)
-
-[node name="ObjectiveNPCs" type="Node2D" parent="." unique_id=806330581]
-
-[node name="JustinNPC" parent="ObjectiveNPCs" unique_id=2056703171 node_paths=PackedStringArray("poach_justin_objective", "player_justin_dialogue_1", "dialogue_manager", "justin_dialogue_2") instance=ExtResource("14_vm72l")]
-position = Vector2(594, 502)
-poach_justin_objective = NodePath("../../ObjectiveManager/Objective5_PoachJustin")
-player_justin_dialogue_1 = NodePath("../../DialogueManager/Section2/Dialogue_Player3")
-dialogue_manager = NodePath("../../DialogueManager")
-justin_dialogue_2 = NodePath("../../DialogueManager/Section2/Dialogue_Justin2")
 
 [node name="DisruptionManager" type="Node" parent="." unique_id=1928967995]
 unique_name_in_owner = true

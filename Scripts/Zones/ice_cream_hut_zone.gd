@@ -11,6 +11,7 @@ extends BaseZone
 @export var dialogue_player5: Dialogue
 
 const COFFEE_BEANS_ITEM = preload("res://Scenes/Inventory/coffee_beans_item.tscn")
+const TWENTY_DOLLAR_BILL_ITEM = preload("res://Scenes/Inventory/twenty_dollar_bill_item.tscn")
 
 func _ready() -> void:
 	super._ready()
@@ -30,9 +31,10 @@ func _on_interact():
 		
 func _on_dialogue_player1_fully_complete():
 	collect_beans_objective.complete_objective()
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.0).timeout
 	inventory_manager.add_item_to_inventory(COFFEE_BEANS_ITEM)
 
 func _on_dialogue_player5_fully_complete():
 	collect_reward_objective.complete_objective()
-	# TODO: Add cash to inventory
+	await get_tree().create_timer(1.0).timeout
+	inventory_manager.add_item_to_inventory(TWENTY_DOLLAR_BILL_ITEM)

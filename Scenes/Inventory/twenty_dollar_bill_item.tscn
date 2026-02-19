@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cnqbf6nkws1vy"]
+
+[ext_resource type="PackedScene" uid="uid://cnm5s2muadow0" path="res://Scenes/Inventory/base_item.tscn" id="1_en6sx"]
+
+[node name="TwentyDollarBillItem" unique_id=372622764 instance=ExtResource("1_en6sx")]
+item_name = 1
