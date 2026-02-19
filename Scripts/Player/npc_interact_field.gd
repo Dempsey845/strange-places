@@ -5,6 +5,6 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	var npc: NPC = body
 	
-	if disruption_manager.disruption_level > 20 and npc.state == npc.AI_STATE.Wander:
+	if disruption_manager.disruption_level > 20 and npc.state == npc.AI_STATE.Wander and npc.can_agro:
 		npc.chase_target = get_parent()
 		npc.state = npc.AI_STATE.Chase

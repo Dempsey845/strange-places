@@ -8,8 +8,10 @@ class_name NPC extends CharacterBody2D
 @onready var melee_attack_area: Area2D = %MeleeAttackArea
 
 @export var speed: float = 150.0
+var initial_speed: float
 
 @export_category("Chase")
+@export var can_agro := true
 @export var chase_target: Node2D = null
 
 @export var melee_attack_distance: float = 45.0
@@ -27,7 +29,10 @@ var last_hot_spot = null
 
 enum AI_STATE {
 	Wander,
-	Chase
+	Chase,
+	RunAway,
+	Follow,
+	Idle
 }
 
 enum ATTACK_STATE
@@ -39,11 +44,16 @@ enum ATTACK_STATE
 var is_navigating = false
 var state := AI_STATE.Wander
 var attack_state := ATTACK_STATE.Melee
+var run_away_return_state := AI_STATE.Wander
+
+var follow_destination: Marker2D = null
 
 var game_manager: GameManager
 
 func _ready():
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
+	
+	initial_speed = speed
 	
 	if not game_manager:
 		game_manager = get_tree().current_scene
@@ -55,9 +65,47 @@ func _process(_delta: float) -> void:
 		AI_STATE.Chase:
 			_chase()
 			_handle_attack_state()
+		AI_STATE.RunAway:
+			_run_away()
+		AI_STATE.Follow:
+			_follow()
+		AI_STATE.Idle:
+			velocity = Vector2.ZERO
 	
 	is_navigating = _handle_navigation()
 	npc_sprite.is_moving = is_navigating
+
+func run_away(duration: float, return_state: AI_STATE, speed_multiplier: float = 1.0):
+	run_away_return_state = return_state
+	state = AI_STATE.RunAway
+	
+	speed *= speed_multiplier
+	
+	if chase_target != null:
+		var direction = (global_position - chase_target.global_position).normalized()
+		nav_agent.target_position = global_position + direction * max_chase_distance
+	
+	await get_tree().create_timer(duration).timeout
+	
+	if state == AI_STATE.RunAway:
+		state = run_away_return_state
+		speed = initial_speed
+
+func follow_until_reached_destination(destination: Marker2D):
+	if chase_target == null:
+		return
+		
+	state = AI_STATE.Follow
+	follow_destination = destination
+
+func _run_away():
+	if chase_target == null:
+		state = run_away_return_state
+		return
+	
+	if nav_agent.is_navigation_finished():
+		var direction = (global_position - chase_target.global_position).normalized()
+		nav_agent.target_position = global_position + direction * max_chase_distance
 
 func _handle_attack_state():
 	if chase_target == null:
@@ -102,6 +150,22 @@ func _chase():
 		else:
 			_change_attack_state(ATTACK_STATE.Throw)
 			
+		chase_update_timer.start()
+
+func _follow():
+	if chase_target == null:
+		state = AI_STATE.Idle
+		return
+	
+	if chase_update_timer.is_stopped():
+		nav_agent.target_position = chase_target.global_position
+		
+		if follow_destination:
+			var distance_to_destination = global_position.distance_to(follow_destination.global_position)
+			if distance_to_destination < 50:
+				state = AI_STATE.Idle
+				follow_destination = null
+		
 		chase_update_timer.start()
 
 func _wander():
