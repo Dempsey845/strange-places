@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://ebv4l5o4unk4" path="res://Scripts/Dialogue/dialogue.gd" id="16_iivbl"]
 [ext_resource type="Texture2D" uid="uid://cbveykd5d477h" path="res://Assets/UI/FreshandModern.png" id="16_nnt18"]
 [ext_resource type="Script" uid="uid://gk1keustn15a" path="res://Scripts/Inventory/inventory_manager.gd" id="18_exi56"]
+[ext_resource type="Texture2D" uid="uid://b05ihr7so4klf" path="res://Assets/spaceship (2).png" id="23_mg4q0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnt18"]
 radius = 56.0
@@ -662,5 +663,17 @@ offset_right = 110.0
 offset_bottom = -127.0
 grow_vertical = 2
 theme_override_constants/separation = 20
+
+[node name="Spaceship(2)" type="Sprite2D" parent="." unique_id=242820356]
+position = Vector2(651, -4025.0002)
+scale = Vector2(1.9101025, 1.9101025)
+texture = ExtResource("23_mg4q0")
+
+[node name="Spaceship(2)2" type="Sprite2D" parent="Spaceship(2)" unique_id=1478154879]
+modulate = Color(0, 0, 0, 0.34117648)
+z_index = -1
+position = Vector2(6.8059387, 10.470703)
+scale = Vector2(0.99999994, 0.99999994)
+texture = ExtResource("23_mg4q0")
 
 [connection signal="on_death" from="PropLayerWalls/PropLayer/Player" to="." method="_on_player_on_death"]
