@@ -14,6 +14,7 @@
 [ext_resource type="TileSet" uid="uid://pffvvoyvlrm8" path="res://Assets/Tilesets/Water.tres" id="10_1phco"]
 [ext_resource type="PackedScene" uid="uid://23m808oc6eir" path="res://Scenes/NPC/sheriff_npc.tscn" id="10_81klo"]
 [ext_resource type="Script" uid="uid://c1uxf6pv6ph7o" path="res://Scripts/Disruption/disruption_manager.gd" id="10_ldgsr"]
+[ext_resource type="PackedScene" uid="uid://brd1w8l3tmris" path="res://Scenes/NPC/hardware_store_owner_npc.tscn" id="11_mucmn"]
 [ext_resource type="Script" uid="uid://l0bohhmyugke" path="res://Scripts/Disruption/disruption_progress_bar.gd" id="11_o5yvi"]
 [ext_resource type="Script" uid="uid://dshsgfb0bu50v" path="res://Scripts/Objective/objective_manager.gd" id="12_nb51f"]
 [ext_resource type="Script" uid="uid://bor7ijdfsw3ug" path="res://Scripts/Player/player_health_progress_bar.gd" id="12_rku1e"]
@@ -27,6 +28,7 @@
 [ext_resource type="Script" uid="uid://gk1keustn15a" path="res://Scripts/Inventory/inventory_manager.gd" id="18_exi56"]
 [ext_resource type="Script" uid="uid://br4cycy4t73xr" path="res://Scripts/Dialogue/Sections/section_3.gd" id="22_cwurv"]
 [ext_resource type="Texture2D" uid="uid://b05ihr7so4klf" path="res://Assets/spaceship (2).png" id="23_mg4q0"]
+[ext_resource type="Script" uid="uid://m5edekqgwr1x" path="res://Scripts/Dialogue/Sections/section_4.gd" id="24_8m3t6"]
 [ext_resource type="Texture2D" uid="uid://vfg6mq4ghh65" path="res://Assets/enter_key.png" id="24_22asu"]
 [ext_resource type="Script" uid="uid://6puv1rfap07y" path="res://Scripts/master.gd" id="26_fkdbe"]
 
@@ -249,7 +251,7 @@ player_justin_dialogue_1 = NodePath("../../../../DialogueManager/Section2 (Poach
 dialogue_manager = NodePath("../../../../DialogueManager")
 justin_dialogue_2 = NodePath("../../../../DialogueManager/Section2 (Poach)/Dialogue_Justin2")
 
-[node name="SheriffNPC" parent="PropLayerWalls/PropLayer/ObjectiveNPCs" unique_id=157245273 node_paths=PackedStringArray("dialogue_manager", "speak_to_sheriff_objective", "player_to_sheriff_1_dialogue", "sheriff_to_player_1_dialogue", "return_zombie_to_sheriff_objective", "sheriff_to_player_2_dialogue") instance=ExtResource("10_81klo")]
+[node name="SheriffNPC" parent="PropLayerWalls/PropLayer/ObjectiveNPCs" unique_id=157245273 node_paths=PackedStringArray("dialogue_manager", "speak_to_sheriff_objective", "player_to_sheriff_1_dialogue", "sheriff_to_player_1_dialogue", "return_zombie_to_sheriff_objective", "sheriff_to_player_2_dialogue", "inventory_manager") instance=ExtResource("10_81klo")]
 position = Vector2(170, -171)
 dialogue_manager = NodePath("../../../../DialogueManager")
 speak_to_sheriff_objective = NodePath("../../../../ObjectiveManager/Objective7_SpeakToSheriff")
@@ -257,11 +259,18 @@ player_to_sheriff_1_dialogue = NodePath("../../../../DialogueManager/Section3/Pl
 sheriff_to_player_1_dialogue = NodePath("../../../../DialogueManager/Section3/SheriffToPlayer1")
 return_zombie_to_sheriff_objective = NodePath("../../../../ObjectiveManager/Objective10_ReturnTheZombieToTheSheriff")
 sheriff_to_player_2_dialogue = NodePath("../../../../DialogueManager/Section3/SheriffToPlayer2")
+inventory_manager = NodePath("../../../../InventoryManager")
+
+[node name="HardwareStoreOwnerNPC" parent="PropLayerWalls/PropLayer/ObjectiveNPCs" unique_id=445124353 node_paths=PackedStringArray("dialogue_manager", "section_four", "inventory_manager") instance=ExtResource("11_mucmn")]
+position = Vector2(1279, 1222)
+dialogue_manager = NodePath("../../../../DialogueManager")
+section_four = NodePath("../../../../DialogueManager/Section4")
+inventory_manager = NodePath("../../../../InventoryManager")
 
 [node name="Player" parent="PropLayerWalls/PropLayer" unique_id=1960526676 node_paths=PackedStringArray("dialogue_manager") instance=ExtResource("3_wrm1d")]
 unique_name_in_owner = true
 y_sort_enabled = true
-position = Vector2(78, -129)
+position = Vector2(1279, 1283)
 dialogue_manager = NodePath("../../../DialogueManager")
 
 [node name="Camera2D" type="Camera2D" parent="PropLayerWalls/PropLayer/Player" unique_id=1984419301]
@@ -513,7 +522,7 @@ position = Vector2(655, 459)
 position = Vector2(180, 557)
 
 [node name="HardwareSpot" type="Marker2D" parent="HotSpots" unique_id=594085791]
-position = Vector2(1279, 1222)
+position = Vector2(1343, 1216)
 
 [node name="MushroomSpot" type="Marker2D" parent="HotSpots" unique_id=1743873760]
 position = Vector2(895, 1674)
@@ -551,10 +560,9 @@ script = ExtResource("13_nnt18")
 objective_text = "Poach Justin for Bob. He's outside the Ice Cream shop across the road."
 next_objective = NodePath("../Objective6_CollectRewardFromBob")
 
-[node name="Objective6_CollectRewardFromBob" type="Node" parent="ObjectiveManager" unique_id=2145490632 node_paths=PackedStringArray("next_objective")]
+[node name="Objective6_CollectRewardFromBob" type="Node" parent="ObjectiveManager" unique_id=2145490632]
 script = ExtResource("13_nnt18")
 objective_text = "Go talk to Bob about payment $$"
-next_objective = NodePath("../Objective7_SpeakToSheriff")
 
 [node name="Objective7_SpeakToSheriff" type="Node" parent="ObjectiveManager" unique_id=837827817 node_paths=PackedStringArray("next_objective")]
 script = ExtResource("13_nnt18")
@@ -577,6 +585,11 @@ next_objective = NodePath("../Objective10_ReturnTheZombieToTheSheriff")
 unique_name_in_owner = true
 script = ExtResource("13_nnt18")
 objective_text = "Return the zombie to the sheriff."
+
+[node name="Objective11_PurchaseBatteries" type="Node" parent="ObjectiveManager" unique_id=685317374]
+unique_name_in_owner = true
+script = ExtResource("13_nnt18")
+objective_text = "Go to the hardware store for batteries."
 
 [node name="DialogueManager" type="Node" parent="." unique_id=46898523 node_paths=PackedStringArray("dialogue_icon", "dialogue_label", "dialogue_animation_player")]
 unique_name_in_owner = true
@@ -700,6 +713,38 @@ dialogue_text = Array[String](["I can't believe you catched the druken fool!", "
 auto_continue = false
 metadata/_custom_type_script = "uid://ebv4l5o4unk4"
 
+[node name="Section4" type="Node" parent="DialogueManager" unique_id=1668415437]
+script = ExtResource("24_8m3t6")
+
+[node name="SarahToPlayer1" type="Node" parent="DialogueManager/Section4" unique_id=1161941392 node_paths=PackedStringArray("next_dialogue")]
+unique_name_in_owner = true
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["Hi, i'm Sarah, the owner of this hardware store.", "Unfortently i've had to close due to a little accident...", "Although, i've got a couple bits here.", "What do you need?"])
+next_dialogue = NodePath("../PlayerToSarah1")
+auto_continue = false
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
+
+[node name="PlayerToSarah1" type="Node" parent="DialogueManager/Section4" unique_id=817645026 node_paths=PackedStringArray("next_dialogue")]
+unique_name_in_owner = true
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["I'm after 70 dollars worth of batteries."])
+next_dialogue = NodePath("../SarahToPlayer2")
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
+
+[node name="SarahToPlayer2" type="Node" parent="DialogueManager/Section4" unique_id=1171071338 node_paths=PackedStringArray("next_dialogue")]
+unique_name_in_owner = true
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["Hmmm...", "Yes I may have what you're looking for right here.", "5 x 9 volt lithium batteries. Is that any good?"])
+next_dialogue = NodePath("../PlayerToSarah2")
+auto_continue = false
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
+
+[node name="PlayerToSarah2" type="Node" parent="DialogueManager/Section4" unique_id=682614131]
+unique_name_in_owner = true
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["That'll do the trick!", "Thank you."])
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
+
 [node name="MasterDialogues" type="Node" parent="DialogueManager" unique_id=1624373108]
 
 [node name="IntroDialogue" type="Node" parent="DialogueManager/MasterDialogues" unique_id=1584622332]
@@ -721,6 +766,18 @@ metadata/_custom_type_script = "uid://ebv4l5o4unk4"
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Twenty dollars, not bad!", "But for the quantity you need to heal you're still off by 50 dollars.", "But you're in luck! ", "I've scanned the area and it turns out the local police station is looking for help!", "A criminal is on the loose!", "And they are offering a 50 dollar reward for anyone who finds him!", "Go speak to the police officer outside the stations main entrance for more details."])
 time_between_text = 0.5
+auto_continue = false
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
+
+[node name="BatteryDialogue" type="Node" parent="DialogueManager/MasterDialogues" unique_id=1871959245]
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["Well done Disrupto!", "You now have enough capital to purchase the necessary amount of batteries. ", "Head over to the hardware shop."])
+auto_continue = false
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
+
+[node name="MilitaryDialogue" type="Node" parent="DialogueManager/MasterDialogues" unique_id=1947674111]
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["Nice job Disrupto!", "Your body has fully healed from those lithium batteries.", "Good news, you can now shapeshift again and you've got a spare battery to repair the ship!", "Bad news, your disruption rate has increased, your bodies disrupting the environment quicker than before now.", "It's time to head to the entrance of the military base.", "You need to get a military officer alone, so that you can shapeshift into him!", "You'd better be quick!"])
 auto_continue = false
 metadata/_custom_type_script = "uid://ebv4l5o4unk4"
 
@@ -861,8 +918,9 @@ libraries/ = SubResource("AnimationLibrary_exi56")
 [node name="InventoryContainer" type="VBoxContainer" parent="InventoryCanvasLayer" unique_id=609792237]
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_left = 33.0
 offset_top = 135.0
-offset_right = 110.0
+offset_right = 143.0
 offset_bottom = -127.0
 grow_vertical = 2
 theme_override_constants/separation = 20
@@ -879,13 +937,18 @@ position = Vector2(6.8059387, 10.470703)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("23_mg4q0")
 
-[node name="Master" type="Node" parent="." unique_id=571695134 node_paths=PackedStringArray("dialogue_manager", "deliver_beans_objective", "cash_dialogue", "collect_reward_objective", "police_dialogue")]
+[node name="Master" type="Node" parent="." unique_id=571695134 node_paths=PackedStringArray("dialogue_manager", "deliver_beans_objective", "cash_dialogue", "collect_reward_objective", "police_dialogue", "speak_to_sheriff_objective", "return_zombie_to_sheriff", "battery_dialogue", "objective_purchase_batteries", "military_dialogue")]
 script = ExtResource("26_fkdbe")
 dialogue_manager = NodePath("../DialogueManager")
 deliver_beans_objective = NodePath("../ObjectiveManager/Objective3_DeliverBeans")
 cash_dialogue = NodePath("../DialogueManager/MasterDialogues/CashDialogue")
 collect_reward_objective = NodePath("../ObjectiveManager/Objective6_CollectRewardFromBob")
 police_dialogue = NodePath("../DialogueManager/MasterDialogues/PoliceDialogue")
+speak_to_sheriff_objective = NodePath("../ObjectiveManager/Objective7_SpeakToSheriff")
+return_zombie_to_sheriff = NodePath("../ObjectiveManager/Objective10_ReturnTheZombieToTheSheriff")
+battery_dialogue = NodePath("../DialogueManager/MasterDialogues/BatteryDialogue")
+objective_purchase_batteries = NodePath("../ObjectiveManager/Objective11_PurchaseBatteries")
+military_dialogue = NodePath("../DialogueManager/MasterDialogues/MilitaryDialogue")
 
 [node name="SheriffMarker" type="Marker2D" parent="." unique_id=615179826]
 unique_name_in_owner = true

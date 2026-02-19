@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bup0vjbivt4l2" path="res://Scenes/npc.tscn" id="1_0adia"]
 [ext_resource type="Texture2D" uid="uid://cug2j8qaqird5" path="res://Assets/NPC/zombie.png" id="2_bsus4"]
-[ext_resource type="Script" uid="uid://cmgrpbi3kh4m0" path="res://Scripts/Zones/zombie_interact_zone.gd" id="3_4d8vu"]
+[ext_resource type="Script" uid="uid://cmgrpbi3kh4m0" path="res://Scripts/Zones/NPCZones/zombie_interact_zone.gd" id="3_4d8vu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4d8vu"]
 atlas = ExtResource("2_bsus4")
@@ -388,11 +388,12 @@ radius = 31.400637
 
 [node name="ZombieNPC" unique_id=801174763 instance=ExtResource("1_0adia")]
 can_agro = false
+mixed_wander = false
 
 [node name="NPCSprite" parent="." index="0" unique_id=1134249631]
 sprite_frames = SubResource("SpriteFrames_gsd6q")
 animation = &"front_idle"
-frame_progress = 0.97697765
+frame_progress = 0.71174514
 
 [node name="ZombieInteractZone" type="Area2D" parent="." index="8" unique_id=278030059]
 collision_layer = 0
@@ -401,3 +402,10 @@ script = ExtResource("3_4d8vu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieInteractZone" index="0" unique_id=1884218642]
 shape = SubResource("CircleShape2D_bsus4")
+
+[node name="RunAwayTimer" type="Timer" parent="." index="9" unique_id=418369875]
+unique_name_in_owner = true
+wait_time = 15.0
+one_shot = true
+
+[connection signal="timeout" from="RunAwayTimer" to="ZombieInteractZone" method="_on_run_away_timer_timeout"]

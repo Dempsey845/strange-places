@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://brd1w8l3tmris"]
+
+[ext_resource type="Texture2D" uid="uid://bhp482rct06u5" path="res://Assets/NPC/hstoreowner.png" id="1_4lxe0"]
+[ext_resource type="Script" uid="uid://cey08dhjq87tk" path="res://Scripts/Zones/NPCZones/hardware_store_owner_npc.gd" id="1_q2abo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2abo"]
+radius = 23.021729
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtfa6"]
+atlas = ExtResource("1_4lxe0")
+region = Rect2(576, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k4kk1"]
+atlas = ExtResource("1_4lxe0")
+region = Rect2(608, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsthc"]
+atlas = ExtResource("1_4lxe0")
+region = Rect2(640, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhwc0"]
+atlas = ExtResource("1_4lxe0")
+region = Rect2(672, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4upg"]
+atlas = ExtResource("1_4lxe0")
+region = Rect2(704, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ux4ki"]
+atlas = ExtResource("1_4lxe0")
+region = Rect2(736, 64, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a5gp5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtfa6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k4kk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsthc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhwc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4upg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ux4ki")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[node name="HardwareStoreOwnerNPC" type="Area2D" unique_id=445124353]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_q2abo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1473118076]
+z_index = -1
+shape = SubResource("CircleShape2D_q2abo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1046488991]
+position = Vector2(0, -31)
+sprite_frames = SubResource("SpriteFrames_a5gp5")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.13395548

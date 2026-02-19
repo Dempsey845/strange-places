@@ -1,6 +1,6 @@
 extends BaseZone
 
-const RUN_AWAY_DURATION = 5.0
+const RUN_AWAY_DURATION = 15.0
 const RUN_AWAY_SPEED_MULTIPLIER = 1.25
 
 var has_run_away := false
@@ -31,13 +31,10 @@ func _on_interact():
 		has_run_away = true
 		is_running_away = true
 		
-		get_tree().create_timer(RUN_AWAY_DURATION).timeout.connect(_on_run_away_finished)
+		%RunAwayTimer.start(RUN_AWAY_DURATION)
 	elif not is_running_away and section_three.objective_9_catch_the_zombie.in_progress and not section_three.player_to_zombie_1.has_started and parent.nav_agent.is_navigation_finished():
 		dialogue_manager.start_dialogue(section_three.player_to_zombie_1)
 		
-func _on_run_away_finished():
-	is_running_away = false
-
 func _on_zombie_to_player_dialogue_complete():
 	var parent: NPC = get_parent()
 	parent.follow_until_reached_destination(section_three.sheriff_marker)
@@ -47,3 +44,7 @@ func _on_sheriff_to_player_dialogue_complete():
 	var parent: NPC = get_parent()
 	parent.state = NPC.AI_STATE.Idle
 	section_three.objective_10_return_the_zombie_to_the_sheriff.complete_objective()
+
+
+func _on_run_away_timer_timeout() -> void:
+	is_running_away = false

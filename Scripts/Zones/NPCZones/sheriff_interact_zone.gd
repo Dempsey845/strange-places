@@ -8,6 +8,10 @@ extends BaseZone
 @export var return_zombie_to_sheriff_objective: Objective
 @export var sheriff_to_player_2_dialogue: Dialogue
 
+@export var inventory_manager: InventoryManager
+
+const FIFTY_DOLLAR_BILL_ITEM = preload("res://Scenes/Inventory/fifty_dollar_bill_item.tscn")
+
 func _ready() -> void:
 	super._ready()
 	on_interact.connect(_on_interact)
@@ -25,4 +29,4 @@ func _on_sheriff_first_spoken_to():
 	speak_to_sheriff_objective.complete_objective()
 
 func _on_bounty_complete():
-	print("TODO: Give reward")
+	inventory_manager.add_item_to_inventory(FIFTY_DOLLAR_BILL_ITEM)
