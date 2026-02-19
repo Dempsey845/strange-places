@@ -14,7 +14,8 @@ var skip_requested := false
 var waiting_for_input := false
 
 func _ready() -> void:
-	start_dialogue($MasterDialogues/IntroDialogue)
+	#start_dialogue($MasterDialogues/PoliceDialogue)
+	pass
 
 func start_dialogue(dialogue: Dialogue, _prev_dialogue: Dialogue = null) -> void:
 	on_dialogue_started.emit(dialogue)

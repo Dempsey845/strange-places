@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://du1vfdnq8ffcp" path="res://Scenes/DisruptiveProps/car_pile_disruptive_prop.tscn" id="7_1phco"]
 [ext_resource type="Texture2D" uid="uid://daktrqlbrgmkf" path="res://Assets/Tilesets/5_Floor_Modular_Buildings_32x32.png" id="7_ldgsr"]
 [ext_resource type="TileSet" uid="uid://pffvvoyvlrm8" path="res://Assets/Tilesets/Water.tres" id="10_1phco"]
+[ext_resource type="PackedScene" uid="uid://23m808oc6eir" path="res://Scenes/NPC/sheriff_npc.tscn" id="10_81klo"]
 [ext_resource type="Script" uid="uid://c1uxf6pv6ph7o" path="res://Scripts/Disruption/disruption_manager.gd" id="10_ldgsr"]
 [ext_resource type="Script" uid="uid://l0bohhmyugke" path="res://Scripts/Disruption/disruption_progress_bar.gd" id="11_o5yvi"]
 [ext_resource type="Script" uid="uid://dshsgfb0bu50v" path="res://Scripts/Objective/objective_manager.gd" id="12_nb51f"]
@@ -180,9 +181,9 @@ collision_mask = 4
 script = ExtResource("2_ewbju")
 buy_a_coffee_objective = NodePath("../../ObjectiveManager/Objective1_BuyACoffee")
 dialogue_manager = NodePath("../../DialogueManager")
-dialogue_jimmy_1 = NodePath("../../DialogueManager/Section1/Dialogue_Jimmy1")
+dialogue_jimmy_1 = NodePath("../../DialogueManager/Section1 (Coffee)/Dialogue_Jimmy1")
 deliver_beans_objective = NodePath("../../ObjectiveManager/Objective3_DeliverBeans")
-dialogue_player_2 = NodePath("../../DialogueManager/Section1/Dialogue_Player2")
+dialogue_player_2 = NodePath("../../DialogueManager/Section1 (Coffee)/Dialogue_Player2")
 inventory_manager = NodePath("../../InventoryManager")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zones/CoffeeAndTeaZone" unique_id=1164984999]
@@ -196,12 +197,12 @@ collision_mask = 4
 script = ExtResource("3_7nbq1")
 collect_beans_objective = NodePath("../../ObjectiveManager/Objective2_CollectBeans")
 dialogue_manager = NodePath("../../DialogueManager")
-dialogue_player1 = NodePath("../../DialogueManager/Section1/Dialogue_Player1")
+dialogue_player1 = NodePath("../../DialogueManager/Section1 (Coffee)/Dialogue_Player1")
 inventory_manager = NodePath("../../InventoryManager")
 talk_to_bob_objective = NodePath("../../ObjectiveManager/Objective4_TalkToBobAboutAJob")
-bob_job_dialogue = NodePath("../../DialogueManager/Section2/Dialogue_Bob2")
+bob_job_dialogue = NodePath("../../DialogueManager/Section2 (Poach)/Dialogue_Bob2")
 collect_reward_objective = NodePath("../../ObjectiveManager/Objective6_CollectRewardFromBob")
-dialogue_player5 = NodePath("../../DialogueManager/Section2/Dialogue_Player5")
+dialogue_player5 = NodePath("../../DialogueManager/Section2 (Poach)/Dialogue_Player5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Zones/IceCreamHutZone" unique_id=374514108]
 shape = SubResource("CircleShape2D_iivbl")
@@ -241,9 +242,16 @@ position = Vector2(1558, 1037)
 [node name="JustinNPC" parent="PropLayerWalls/PropLayer/ObjectiveNPCs" unique_id=2056703171 node_paths=PackedStringArray("poach_justin_objective", "player_justin_dialogue_1", "dialogue_manager", "justin_dialogue_2") instance=ExtResource("14_vm72l")]
 position = Vector2(594, 459)
 poach_justin_objective = NodePath("../../../../ObjectiveManager/Objective5_PoachJustin")
-player_justin_dialogue_1 = NodePath("../../../../DialogueManager/Section2/Dialogue_Player3")
+player_justin_dialogue_1 = NodePath("../../../../DialogueManager/Section2 (Poach)/Dialogue_Player3")
 dialogue_manager = NodePath("../../../../DialogueManager")
-justin_dialogue_2 = NodePath("../../../../DialogueManager/Section2/Dialogue_Justin2")
+justin_dialogue_2 = NodePath("../../../../DialogueManager/Section2 (Poach)/Dialogue_Justin2")
+
+[node name="SheriffNPC" parent="PropLayerWalls/PropLayer/ObjectiveNPCs" unique_id=157245273 node_paths=PackedStringArray("dialogue_manager", "speak_to_sheriff_objective", "player_to_sheriff_1_dialogue", "sheriff_to_player_1_dialogue") instance=ExtResource("10_81klo")]
+position = Vector2(170, -197)
+dialogue_manager = NodePath("../../../../DialogueManager")
+speak_to_sheriff_objective = NodePath("../../../../ObjectiveManager/Objective7_SpeakToSheriff")
+player_to_sheriff_1_dialogue = NodePath("../../../../DialogueManager/Section3 (Bounty)/PlayerToSheriff1")
+sheriff_to_player_1_dialogue = NodePath("../../../../DialogueManager/Section3 (Bounty)/SheriffToPlayer1")
 
 [node name="Player" parent="PropLayerWalls/PropLayer" unique_id=1960526676 node_paths=PackedStringArray("dialogue_manager") instance=ExtResource("3_wrm1d")]
 unique_name_in_owner = true
@@ -538,57 +546,71 @@ next_objective = NodePath("../Objective6_CollectRewardFromBob")
 script = ExtResource("13_nnt18")
 objective_text = "Go talk to Bob about payment $$"
 
+[node name="Objective7_SpeakToSheriff" type="Node" parent="ObjectiveManager" unique_id=837827817 node_paths=PackedStringArray("next_objective")]
+script = ExtResource("13_nnt18")
+objective_text = "Speak to the police sheriff at the station."
+next_objective = NodePath("../Objective8_FindTheZombie")
+
+[node name="Objective8_FindTheZombie" type="Node" parent="ObjectiveManager" unique_id=2146434877 node_paths=PackedStringArray("next_objective")]
+script = ExtResource("13_nnt18")
+objective_text = "Find the zombie."
+next_objective = NodePath("../Objective9_ReturnTheZombieToTheSheriff")
+
+[node name="Objective9_ReturnTheZombieToTheSheriff" type="Node" parent="ObjectiveManager" unique_id=963902782]
+script = ExtResource("13_nnt18")
+objective_text = "Return the zombie to the sheriff."
+
 [node name="DialogueManager" type="Node" parent="." unique_id=46898523 node_paths=PackedStringArray("dialogue_icon", "dialogue_label", "dialogue_animation_player")]
 script = ExtResource("15_85qyi")
 dialogue_icon = NodePath("../DialogueCanvasLayer/DialogueBackground/DialogueIcon")
 dialogue_label = NodePath("../DialogueCanvasLayer/DialogueBackground/DialogueLabel")
 dialogue_animation_player = NodePath("../DialogueCanvasLayer/DialogueAnimationPlayer")
 
-[node name="Section1" type="Node" parent="DialogueManager" unique_id=1946070404]
+[node name="Section1 (Coffee)" type="Node" parent="DialogueManager" unique_id=1946070404]
 
-[node name="Dialogue_Jimmy1" type="Node" parent="DialogueManager/Section1" unique_id=1772581048]
+[node name="Dialogue_Jimmy1" type="Node" parent="DialogueManager/Section1 (Coffee)" unique_id=1772581048]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Hello! My name is Jimmy the Barista.", "It looks like you could do with a coffee.", "Well you've come to the wrong place!", "I'm waiting on Bob to deliver the coffee beans but it looks like he's busy...", "If you'd like a coffee sooner you could go collect them for me?", "He runs the ice cream hut up the road.", "Don't be confused with the store right next to it!"])
 time_between_text = 0.5
 auto_continue = false
 
-[node name="Dialogue_Player1" type="Node" parent="DialogueManager/Section1" unique_id=1804765360 node_paths=PackedStringArray("next_dialogue")]
+[node name="Dialogue_Player1" type="Node" parent="DialogueManager/Section1 (Coffee)" unique_id=1804765360 node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Hi! Jimmy sent me for his coffee beans.", "He told me you've got your work cut out for you!"])
 next_dialogue = NodePath("../Dialogue_Bob1")
 
-[node name="Dialogue_Bob1" type="Node" parent="DialogueManager/Section1" unique_id=978622349]
+[node name="Dialogue_Bob1" type="Node" parent="DialogueManager/Section1 (Coffee)" unique_id=978622349]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["I appreciate you coming to collect.", "It's been one busy day...", "Hey, if your still in a helping mood, i've got a job for you.", "I will chuck some cash your way!", "Just stop on by after if your interested.", "Here is the coffee beans."])
 time_between_text = 0.5
 auto_continue = false
 
-[node name="Dialogue_Player2" type="Node" parent="DialogueManager/Section1" unique_id=677644783 node_paths=PackedStringArray("next_dialogue")]
+[node name="Dialogue_Player2" type="Node" parent="DialogueManager/Section1 (Coffee)" unique_id=677644783 node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Hey Jimmy, here are those beans you asked for."])
 next_dialogue = NodePath("../Dialogue_Jimmy2")
 
-[node name="Dialogue_Jimmy2" type="Node" parent="DialogueManager/Section1" unique_id=1782226169]
+[node name="Dialogue_Jimmy2" type="Node" parent="DialogueManager/Section1 (Coffee)" unique_id=1782226169]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Thank you so much!", "Take this free coffee for the hard work!", "If your looking for cash, Bob is your guy.", "He's always looking for help. Thanks again."])
 time_between_text = 0.5
 auto_continue = false
 
-[node name="Section2" type="Node" parent="DialogueManager" unique_id=1392504986]
+[node name="Section2 (Poach)" type="Node" parent="DialogueManager" unique_id=1392504986]
 
-[node name="Dialogue_Bob2" type="Node" parent="DialogueManager/Section2" unique_id=1232485685]
+[node name="Dialogue_Bob2" type="Node" parent="DialogueManager/Section2 (Poach)" unique_id=1232485685]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["I'm glad you came back, I could really use your help!", "My favorite customer Justin has stopped purchasing from here :(", "He's starting going to the ice cream shop across the road.", "If you're able to convince him to come back, I will pay you a good sum :)", "He's easy to spot since he's always on his phone.", "Thank you."])
 time_between_text = 0.5
 auto_continue = false
 
-[node name="Dialogue_Player3" type="Node" parent="DialogueManager/Section2" unique_id=578214145 node_paths=PackedStringArray("next_dialogue")]
+[node name="Dialogue_Player3" type="Node" parent="DialogueManager/Section2 (Poach)" unique_id=578214145 node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Hey, are you Justin?"])
 next_dialogue = NodePath("../Dialogue_Justin1")
 time_between_next_dialogue = 0.5
 
-[node name="Dialogue_Justin1" type="Node" parent="DialogueManager/Section2" unique_id=1356774733 node_paths=PackedStringArray("next_dialogue")]
+[node name="Dialogue_Justin1" type="Node" parent="DialogueManager/Section2 (Poach)" unique_id=1356774733 node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Yeah I'm Justin, what's up?"])
 time_between_text = 0.5
@@ -596,29 +618,44 @@ next_dialogue = NodePath("../Dialogue_Player4")
 time_between_next_dialogue = 0.5
 auto_continue = false
 
-[node name="Dialogue_Player4" type="Node" parent="DialogueManager/Section2" unique_id=1008591760 node_paths=PackedStringArray("next_dialogue")]
+[node name="Dialogue_Player4" type="Node" parent="DialogueManager/Section2 (Poach)" unique_id=1008591760 node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["I'm from the food safety department, this ice cream shop has been exposed to a nasty rat investation!"])
 next_dialogue = NodePath("../Dialogue_Justin2")
 time_between_next_dialogue = 0.5
 
-[node name="Dialogue_Justin2" type="Node" parent="DialogueManager/Section2" unique_id=721884496]
+[node name="Dialogue_Justin2" type="Node" parent="DialogueManager/Section2 (Poach)" unique_id=721884496]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Oh no! I eat here every day...", "I guess I will start going back to the ice cream hut from now on :("])
 time_between_text = 0.5
 time_between_next_dialogue = 0.5
 auto_continue = false
 
-[node name="Dialogue_Player5" type="Node" parent="DialogueManager/Section2" unique_id=2041275581 node_paths=PackedStringArray("next_dialogue")]
+[node name="Dialogue_Player5" type="Node" parent="DialogueManager/Section2 (Poach)" unique_id=2041275581 node_paths=PackedStringArray("next_dialogue")]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Good news Bob, Justin is coming back!"])
 next_dialogue = NodePath("../Dialogue_Bob3")
 
-[node name="Dialogue_Bob3" type="Node" parent="DialogueManager/Section2" unique_id=1142020089]
+[node name="Dialogue_Bob3" type="Node" parent="DialogueManager/Section2 (Poach)" unique_id=1142020089]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Thank you so much! I won't ask you how you did it tho ;)", "Take this for your hard work. Thanks again!"])
 time_between_text = 0.5
 auto_continue = false
+
+[node name="Section3 (Bounty)" type="Node" parent="DialogueManager" unique_id=753963157]
+
+[node name="PlayerToSheriff1" type="Node" parent="DialogueManager/Section3 (Bounty)" unique_id=253423658 node_paths=PackedStringArray("next_dialogue")]
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["Hey, I heard you're offering a cash reward for a bounty?"])
+next_dialogue = NodePath("../SheriffToPlayer1")
+freeze_player = false
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
+
+[node name="SheriffToPlayer1" type="Node" parent="DialogueManager/Section3 (Bounty)" unique_id=1823376537]
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["Indeed so! The sneaky rascal escaped.", "He's a drunk!", "Dressed as a bloody zombie!", "Sticking out like a sore thumb.", "If you bring him back here the 50 dollar reward is yours for the taking!"])
+auto_continue = false
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
 
 [node name="MasterDialogues" type="Node" parent="DialogueManager" unique_id=1624373108]
 
@@ -633,6 +670,13 @@ metadata/_custom_type_script = "uid://ebv4l5o4unk4"
 [node name="CashDialogue" type="Node" parent="DialogueManager/MasterDialogues" unique_id=1328994814]
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Testing... Testing... 123...", "And we're back!", "Well done on getting that free coffee!", "It appears this planet has something called capitalism, meaning you will have to earn 'cash' to get what you need.", "And what you need is batteries!", "The chemicals inside those batteries can heal your shapeshifting abilities.", "Your ship is in a highly secure military base.", "You must regain your abilities, so that you can retrieve your ship.", "Go speak to Bob about that job!"])
+time_between_text = 0.5
+auto_continue = false
+metadata/_custom_type_script = "uid://ebv4l5o4unk4"
+
+[node name="PoliceDialogue" type="Node" parent="DialogueManager/MasterDialogues" unique_id=2131836052]
+script = ExtResource("16_iivbl")
+dialogue_text = Array[String](["Twenty dollars, not bad!", "But for the quantity you need to heal you're still off by 50 dollars.", "But you're in luck! ", "I've scanned the area and it turns out the local police station is looking for help!", "A criminal is on the loose!", "And they are offering a 50 dollar reward for anyone who finds him!", "Go speak to the police officer outside the stations main entrance for more details."])
 time_between_text = 0.5
 auto_continue = false
 metadata/_custom_type_script = "uid://ebv4l5o4unk4"
@@ -792,10 +836,12 @@ position = Vector2(6.8059387, 10.470703)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("23_mg4q0")
 
-[node name="Master" type="Node" parent="." unique_id=571695134 node_paths=PackedStringArray("dialogue_manager", "deliver_beans_objective", "cash_dialogue")]
+[node name="Master" type="Node" parent="." unique_id=571695134 node_paths=PackedStringArray("dialogue_manager", "deliver_beans_objective", "cash_dialogue", "collect_reward_objective", "police_dialogue")]
 script = ExtResource("26_fkdbe")
 dialogue_manager = NodePath("../DialogueManager")
 deliver_beans_objective = NodePath("../ObjectiveManager/Objective3_DeliverBeans")
 cash_dialogue = NodePath("../DialogueManager/MasterDialogues/CashDialogue")
+collect_reward_objective = NodePath("../ObjectiveManager/Objective6_CollectRewardFromBob")
+police_dialogue = NodePath("../DialogueManager/MasterDialogues/PoliceDialogue")
 
 [connection signal="on_death" from="PropLayerWalls/PropLayer/Player" to="." method="_on_player_on_death"]

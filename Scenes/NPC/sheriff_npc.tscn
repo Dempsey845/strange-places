@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://23m808oc6eir"]
+
+[ext_resource type="Texture2D" uid="uid://d005t6vptwmmv" path="res://Assets/NPC/pofficer1.png" id="1_7w8hg"]
+[ext_resource type="Script" uid="uid://cekvp2tujn37x" path="res://Scripts/Zones/sheriff_interact_zone.gd" id="1_skrcf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w8hg"]
+atlas = ExtResource("1_7w8hg")
+region = Rect2(576, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skrcf"]
+atlas = ExtResource("1_7w8hg")
+region = Rect2(608, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kht7v"]
+atlas = ExtResource("1_7w8hg")
+region = Rect2(640, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mgo8"]
+atlas = ExtResource("1_7w8hg")
+region = Rect2(672, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h31o3"]
+atlas = ExtResource("1_7w8hg")
+region = Rect2(704, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l6u4t"]
+atlas = ExtResource("1_7w8hg")
+region = Rect2(736, 64, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w34k7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w8hg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skrcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kht7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mgo8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h31o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l6u4t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7w8hg"]
+radius = 19.0
+
+[node name="SheriffNPC" type="Area2D" unique_id=157245273]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_skrcf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1041487605]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_w34k7")
+frame_progress = 0.9829271
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=72453269]
+shape = SubResource("CircleShape2D_7w8hg")
