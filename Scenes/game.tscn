@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://vfg6mq4ghh65" path="res://Assets/enter_key.png" id="24_22asu"]
 [ext_resource type="Script" uid="uid://6puv1rfap07y" path="res://Scripts/master.gd" id="26_fkdbe"]
 [ext_resource type="Script" uid="uid://cwwxywixn6v1m" path="res://Scripts/Dialogue/Sections/section_5.gd" id="27_xe308"]
+[ext_resource type="Script" uid="uid://b27a7u3wdein1" path="res://Scripts/chased_label.gd" id="31_d3cha"]
 [ext_resource type="Texture2D" uid="uid://dokbkruexcrcm" path="res://Assets/Tilesets/23_MIlitary_Base_32x32.png" id="32_ese38"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nnt18"]
@@ -85,6 +86,10 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1phco"]
 bg_color = Color(0.6, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_xe308"]
+font_size = 24
+font_color = Color(1, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nnt18"]
 font_size = 22
@@ -273,7 +278,7 @@ inventory_manager = NodePath("../../../../InventoryManager")
 [node name="Player" parent="PropLayerWalls/PropLayer" unique_id=1960526676 node_paths=PackedStringArray("dialogue_manager") instance=ExtResource("3_wrm1d")]
 unique_name_in_owner = true
 y_sort_enabled = true
-position = Vector2(945, -1280)
+position = Vector2(945, 2013)
 dialogue_manager = NodePath("../../../DialogueManager")
 
 [node name="Camera2D" type="Camera2D" parent="PropLayerWalls/PropLayer/Player" unique_id=1984419301]
@@ -558,6 +563,7 @@ script = ExtResource("12_nb51f")
 objective_label = NodePath("../ObjectiveCanvasLayer/ObjectiveBorder/ObjectiveLabel")
 
 [node name="Objective1_BuyACoffee" type="Node" parent="ObjectiveManager" unique_id=449863759 node_paths=PackedStringArray("next_objective")]
+unique_name_in_owner = true
 script = ExtResource("13_nnt18")
 objective_text = "Buy a coffee."
 next_objective = NodePath("../Objective2_CollectBeans")
@@ -809,6 +815,7 @@ position = Vector2(269, 402)
 [node name="MasterDialogues" type="Node" parent="DialogueManager" unique_id=1624373108]
 
 [node name="IntroDialogue" type="Node" parent="DialogueManager/MasterDialogues" unique_id=1584622332]
+unique_name_in_owner = true
 script = ExtResource("16_iivbl")
 dialogue_text = Array[String](["Disrupto! Disrupto! Disrupto!", "Thank the heavens your alive!", "That crash was narly!", "It seems you've crashed on a planet called Dirt...", "Oh wait my bad, Earth!", "Your molecular structure is not suited for this planet, staying here too long will cause mass disruption!", "I've scanned this area and it appears your ship has been stolen from this planets government.", "You must blend in, with a little research i've discovered this planet has a substance called coffee.", "This substance can help you regain some energy.", "Acording to these readings, theres a coffee suplier nearby!", "Go get a coffee, it will recharge you're biological antena so that we can speak for longer.", "G.g.g I'm cutting out... Good lu lu luck!"])
 time_between_text = 0.5
@@ -871,6 +878,21 @@ step = 1.0
 value = 5.0
 show_percentage = false
 script = ExtResource("12_rku1e")
+
+[node name="ChasedLabel" type="Label" parent="PlayerCanvasLayer" unique_id=726254106 node_paths=PackedStringArray("npc_interact_field")]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 28.0
+offset_bottom = 62.0
+grow_horizontal = 2
+text = "You are being chased!"
+label_settings = SubResource("LabelSettings_xe308")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("31_d3cha")
+npc_interact_field = NodePath("../../PropLayerWalls/PropLayer/Player/NPCInteractField")
 
 [node name="ObjectiveCanvasLayer" type="CanvasLayer" parent="." unique_id=2100023102]
 
@@ -1083,3 +1105,5 @@ position = Vector2(1615, -1394)
 position = Vector2(1729, -1394)
 
 [connection signal="on_death" from="PropLayerWalls/PropLayer/Player" to="." method="_on_player_on_death"]
+
+[editable path="PropLayerWalls/PropLayer/Player"]

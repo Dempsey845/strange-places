@@ -86,6 +86,9 @@ func _process(_delta: float) -> void:
 			if chasing_player:
 				for i in len(NPCInteractField.npcs_chasing_player):
 					if NPCInteractField.npcs_chasing_player[i] == get_instance_id():
+						#TODO: Do the same if the NPC dies
+						if len(NPCInteractField.npcs_chasing_player) - 1 <= 0:
+							NPCInteractField.Instance.on_no_npcs_chasing_player.emit()
 						NPCInteractField.npcs_chasing_player.remove_at(i)
 						break
 				chasing_player = false

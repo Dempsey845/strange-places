@@ -21,8 +21,7 @@ func _on_interact():
 		return
 	
 	dialogue_manager.start_dialogue(section_four.sarah_to_player_1)
-	inventory_manager.remove_item_from_inventory(Items.ItemName.TwentyDollarBill)
-	inventory_manager.remove_item_from_inventory(Items.ItemName.FiftyDollarBill)
+	
 	
 	section_four.player_to_sarah_2.on_dialogue_complete.connect(_on_dialogue_complete)
 	
@@ -30,7 +29,9 @@ func _on_interact():
 	interacted = true
 
 func _on_dialogue_complete():
+	inventory_manager.remove_item_from_inventory(Items.ItemName.TwentyDollarBill)
+	inventory_manager.remove_item_from_inventory(Items.ItemName.FiftyDollarBill)
+	await get_tree().create_timer(1.0).timeout
 	inventory_manager.add_item_to_inventory(BATTERY_ITEM)
-	await get_tree().create_timer(1.5).timeout
 	section_four.objective_purchase_batteries.complete_objective()
 	
