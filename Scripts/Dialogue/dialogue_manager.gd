@@ -16,7 +16,7 @@ var waiting_for_input := false
 static var in_dialogue := false
 
 func _ready() -> void:
-	start_dialogue($MasterDialogues/IntroDialogue)
+	#start_dialogue($MasterDialogues/IntroDialogue)
 	pass
 
 func start_dialogue(dialogue: Dialogue, _prev_dialogue: Dialogue = null) -> void:

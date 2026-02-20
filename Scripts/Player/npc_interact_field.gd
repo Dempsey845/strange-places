@@ -25,7 +25,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if disruption_manager.disruption_level > 20 and not DialogueManager.in_dialogue and npc.state == npc.AI_STATE.Wander and npc.can_agro:
 		npc.chase_target = get_parent()
 		npc.state = npc.AI_STATE.Chase
-		npcs_chasing_player.append(npc.get_instance_id())
-		
 		if len(npcs_chasing_player) == 0:
 			on_npc_chase.emit()
+		
+		npcs_chasing_player.append(npc.get_instance_id())
