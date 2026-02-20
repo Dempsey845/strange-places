@@ -53,6 +53,9 @@ var follow_destination: Marker2D = null
 
 var game_manager: GameManager
 
+var _last_state = null
+var chasing_player := true
+
 func _ready():
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
 	
@@ -77,6 +80,17 @@ func _process(_delta: float) -> void:
 	
 	is_navigating = _handle_navigation()
 	npc_sprite.is_moving = is_navigating
+	
+	if _last_state != state:
+		if _last_state == AI_STATE.Chase:
+			if chasing_player:
+				for i in len(NPCInteractField.npcs_chasing_player):
+					if NPCInteractField.npcs_chasing_player[i] == get_instance_id():
+						NPCInteractField.npcs_chasing_player.remove_at(i)
+						break
+				chasing_player = false
+		_last_state = state
+		
 
 func run_away(duration: float, return_state: AI_STATE, speed_multiplier: float = 1.0):
 	run_away_return_state = return_state
@@ -120,7 +134,7 @@ func _handle_attack_state():
 			npc_sprite.direction = global_position.direction_to(chase_target.global_position)
 			npc_sprite.play_melee_attack()
 		ATTACK_STATE.Throw:
-			if chase_throw_cooldown_timer.is_stopped():
+			if chase_throw_cooldown_timer.is_stopped() and projectile_packed_scene:
 				var projectile: Projectile = projectile_packed_scene.instantiate()
 				projectile.global_position = global_position
 				projectile.direction = global_position.direction_to(chase_target.global_position)
@@ -142,6 +156,7 @@ func _chase():
 		state = AI_STATE.Wander
 		return
 	
+	chasing_player = true
 	if chase_update_timer.is_stopped():
 		nav_agent.target_position = chase_target.global_position
 		var distance_to_target = global_position.distance_squared_to(chase_target.global_position)
