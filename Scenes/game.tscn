@@ -40,6 +40,7 @@
 [ext_resource type="Script" uid="uid://b27a7u3wdein1" path="res://Scripts/chased_label.gd" id="31_d3cha"]
 [ext_resource type="Texture2D" uid="uid://dokbkruexcrcm" path="res://Assets/Tilesets/23_MIlitary_Base_32x32.png" id="32_ese38"]
 [ext_resource type="Script" uid="uid://ncmfykndvexd" path="res://Scripts/Dialogue/Sections/section_7.gd" id="32_f3c8l"]
+[ext_resource type="Script" uid="uid://keaf4bmg6jxn" path="res://Scripts/fade_canvas_layer.gd" id="39_6a4tp"]
 [ext_resource type="Script" uid="uid://bu1j3sejvrf6i" path="res://Scripts/NPC/soldier_manager.gd" id="39_ym3tv"]
 [ext_resource type="Script" uid="uid://cewrljywuvhkv" path="res://Scripts/Zones/spaceship_interact_area.gd" id="40_bu0y5"]
 
@@ -186,6 +187,58 @@ _data = {
 &"RESET": SubResource("Animation_iivbl"),
 &"close": SubResource("Animation_exi56"),
 &"open": SubResource("Animation_7nbq1")
+}
+
+[sub_resource type="Animation" id="Animation_bu0y5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6a4tp"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_631el"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vs120"]
+_data = {
+&"RESET": SubResource("Animation_bu0y5"),
+&"fade_in": SubResource("Animation_6a4tp"),
+&"fade_out": SubResource("Animation_631el")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6a4tp"]
@@ -1271,6 +1324,23 @@ offset_top = -180.0
 offset_right = 85.0
 offset_bottom = 159.0
 grow_vertical = 2
+
+[node name="FadeCanvasLayer" type="CanvasLayer" parent="." unique_id=158968870]
+unique_name_in_owner = true
+layer = 5
+script = ExtResource("39_6a4tp")
+
+[node name="ColorRect" type="ColorRect" parent="FadeCanvasLayer" unique_id=1766352798]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FadeCanvasLayer" unique_id=145289605]
+libraries/ = SubResource("AnimationLibrary_vs120")
+autoplay = &"fade_in"
 
 [node name="Spaceship" type="StaticBody2D" parent="." unique_id=1411616661]
 position = Vector2(651, -4025.0002)

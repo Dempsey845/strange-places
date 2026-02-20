@@ -38,6 +38,9 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 	
 func _process(_delta: float) -> void:
+	if not shoot_locked:
+		crosshair.position = get_viewport().get_mouse_position()
+	
 	if shoot_locked or not %ShootRateTimer.is_stopped():
 		return
 	
@@ -68,10 +71,6 @@ func unlock_shoot():
 	shoot_locked = false
 	crosshair.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and not shoot_locked:
-		crosshair.position = event.position
 
 func _exit_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

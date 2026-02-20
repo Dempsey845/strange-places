@@ -4,6 +4,8 @@ extends BaseZone
 
 var interacted = false
 
+@onready var fade_canvas_layer: FadeCanvasLayer = %FadeCanvasLayer
+
 func _ready() -> void:
 	super._ready()
 	
@@ -12,5 +14,4 @@ func _ready() -> void:
 func _on_interact():
 	if objective_19_enter_the_ship.in_progress and not interacted:
 		interacted = true
-		# TODO: Play fade out animation
-		SceneManager.change_scene("res://Scenes/menu.tscn")
+		fade_canvas_layer.fade_out()
