@@ -47,6 +47,10 @@ var shooting := false
 var last_hot_spot = null
 var last_fixed_wander_point = null
 
+@export_category("Health")
+@export var health := 0
+var initial_health := 0
+
 enum WANDER_TYPE {
 	Random,
 	HotSpot,
@@ -86,6 +90,7 @@ func _ready():
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
 	
 	initial_speed = speed
+	initial_health = health
 	
 	if not game_manager:
 		game_manager = get_tree().current_scene
@@ -344,9 +349,14 @@ func _on_melee_attack_check_timer_timeout() -> void:
 		player_hitbox.take_damage(1)
 
 
-func take_damage(damage: int):
-	#TODO: Implement health
-	var health = 100
+func take_damage(damage: int = 1):
+	if initial_health == 0:
+		return
+	
+	health -= damage
+	
+	npc_sprite.play_hurt_animation()
+	
 	if health <= 0:
 		_clean_up_chase_state()
 		call_deferred("queue_free")

@@ -56,6 +56,8 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wiymn"]
 radius = 20.024984
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2g13p"]
+
 [node name="GeneralNPC" type="Area2D" unique_id=2057170582]
 collision_layer = 0
 collision_mask = 4
@@ -68,3 +70,9 @@ frame_progress = 0.3971653
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2068355212]
 shape = SubResource("CircleShape2D_wiymn")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1594345646]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=831528939]
+position = Vector2(-1, -8)
+shape = SubResource("CircleShape2D_2g13p")

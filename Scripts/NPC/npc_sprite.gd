@@ -20,11 +20,18 @@ var enabled := true
 
 var bonus_state: String = ""
 
+const HURT_ANIM_COUNT = 3
+const HURT_ANIM_FPS = 10.0
+
 func _physics_process(_delta: float) -> void:
 	if not enabled:
 		return
 	
-	state = ("walk" if is_moving else "idle") if state!="melee_attack" else "melee_attack"
+	if state != "hurt":
+		state = ("walk" if is_moving else "idle") if state!="melee_attack" else "melee_attack"
+	else:
+		bonus_state = ""
+		
 	_update_direction()
 	
 	play(direction_state+"_"+state+bonus_state)
@@ -48,4 +55,9 @@ func play_melee_attack():
 	state = "melee_attack"
 	melee_attack_check_timer.start(melee_animation_attack_check_frame/melee_animation_fps)
 	await get_tree().create_timer(melee_animation_duration).timeout
+	state = "idle"
+
+func play_hurt_animation():
+	state = "hurt"
+	await get_tree().create_timer(HURT_ANIM_COUNT/HURT_ANIM_FPS).timeout
 	state = "idle"

@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dlqgfqsqtjo1" path="res://Assets/Circle.png" id="2_7x4tj"]
 
 [node name="BulletProjectile" unique_id=1149445516 instance=ExtResource("1_7m1h6")]
+collision_mask = 7
 
 [node name="BulletSprite" type="Sprite2D" parent="." index="2" unique_id=1497525222]
 modulate = Color(1, 0.8392157, 0.2901961, 1)
