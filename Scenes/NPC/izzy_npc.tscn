@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dn5yo4qcm6n3m"]
+
+[ext_resource type="Texture2D" uid="uid://3troclpmicra" path="res://Assets/NPC/izzy_idle.png" id="1_1nclc"]
+[ext_resource type="Script" uid="uid://dgb0sjj60k8yo" path="res://Scripts/Zones/NPCZones/izzy_npc.gd" id="1_gtb1f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtb1f"]
+atlas = ExtResource("1_1nclc")
+region = Rect2(576, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_msohw"]
+atlas = ExtResource("1_1nclc")
+region = Rect2(608, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3w5ci"]
+atlas = ExtResource("1_1nclc")
+region = Rect2(640, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s8d6j"]
+atlas = ExtResource("1_1nclc")
+region = Rect2(672, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3hfm7"]
+atlas = ExtResource("1_1nclc")
+region = Rect2(704, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cvsr"]
+atlas = ExtResource("1_1nclc")
+region = Rect2(736, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_alb2a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtb1f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_msohw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3w5ci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s8d6j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3hfm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cvsr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ke3rg"]
+radius = 18.0
+
+[node name="IzzyNPC" type="Area2D" unique_id=773578879]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_gtb1f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2122899567]
+position = Vector2(0, -32)
+sprite_frames = SubResource("SpriteFrames_alb2a")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.62423414
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=195782669]
+shape = SubResource("CircleShape2D_ke3rg")

@@ -65,7 +65,8 @@ script = ExtResource("1_skrcf")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1041487605]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_w34k7")
-frame_progress = 0.9829271
+autoplay = "default"
+frame_progress = 0.10784662
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=72453269]
 shape = SubResource("CircleShape2D_7w8hg")
