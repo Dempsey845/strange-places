@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dwryihfd2hcap"]
 
-[ext_resource type="Texture2D" uid="uid://cn3dhsj4sji6y" path="res://Assets/NPC/Modern_Exteriors_Characters_Scout_32x32_2.png" id="1_bcmry"]
+[ext_resource type="Texture2D" uid="uid://cn3dhsj4sji6y" path="res://Assets/NPC/scout.png" id="1_bcmry"]
 [ext_resource type="Script" uid="uid://cm88td4pcm6ww" path="res://Scripts/Zones/NPCZones/justin_interact_zone.gd" id="2_6wq1r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcmry"]

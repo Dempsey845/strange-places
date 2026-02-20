@@ -24,8 +24,11 @@ var initial_speed: float
 
 @export_category("Wander")
 @export var mixed_wander := true # random + hot spots
+@export var fixed_wander := false
+@export var fixed_wander_points: Node2D
 @onready var hot_spots: HotSpots = get_tree().current_scene.hot_spots
 var last_hot_spot = null
+var last_fixed_wander_point = null
 
 enum AI_STATE {
 	Wander,
@@ -177,6 +180,17 @@ func _wander():
 		_next_wander_point()
 
 func _next_wander_point():
+	if state != AI_STATE.Wander:
+		return
+	
+	if fixed_wander:
+		var rand_wander_point = fixed_wander_points.get_children().pick_random()
+		while  rand_wander_point == last_fixed_wander_point:
+			rand_wander_point = fixed_wander_points.get_children().pick_random()
+		nav_agent.target_position = rand_wander_point.global_position
+		last_fixed_wander_point = rand_wander_point
+		return
+	
 	var random_wander = not mixed_wander or randi() % 2 == 1
 	
 	if random_wander:

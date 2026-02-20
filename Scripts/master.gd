@@ -16,6 +16,8 @@ extends Node
 
 @export var military_dialogue: Dialogue
 
+@onready var objective_12_find_a_solider: Objective = %Objective12_FindASolider
+
 func _ready() -> void:
 	deliver_beans_objective.on_complete.connect(_on_deliver_beans)
 	collect_reward_objective.on_complete.connect(_on_collect_reward)
@@ -26,6 +28,7 @@ func _ready() -> void:
 	
 	battery_dialogue.on_dialogue_complete.connect(func(): objective_purchase_batteries.start_objective())
 	objective_purchase_batteries.on_complete.connect(_on_purchase_batteries)
+	military_dialogue.on_dialogue_complete.connect(_on_military_dialogue_complete)
 	
 func _on_deliver_beans():
 	await get_tree().create_timer(2.0).timeout
@@ -46,3 +49,6 @@ func _on_police_reward_given():
 func _on_purchase_batteries():
 	await get_tree().create_timer(2.0).timeout
 	dialogue_manager.start_dialogue(military_dialogue)
+
+func _on_military_dialogue_complete():
+	objective_12_find_a_solider.start_objective()

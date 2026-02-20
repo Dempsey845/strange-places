@@ -16,7 +16,12 @@ var is_moving := false
 
 var state = "idle"
 
+var enabled := true
+
 func _physics_process(_delta: float) -> void:
+	if not enabled:
+		return
+	
 	state = ("walk" if is_moving else "idle") if state!="melee_attack" else "melee_attack"
 	_update_direction()
 	
