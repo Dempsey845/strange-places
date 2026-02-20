@@ -40,3 +40,8 @@ func take_damage(damage: int):
 	if health <= 0:
 		on_death.emit()
 		queue_free()
+
+func shape_shift_into_soldier():
+	player_sprite.visible = false
+	player_sprite.shape_shifted = true
+	%PlayerSoldierSprite.visible = true

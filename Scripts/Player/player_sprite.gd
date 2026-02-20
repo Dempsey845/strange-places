@@ -13,6 +13,10 @@ var state = "idle"
 const HURT_ANIM_COUNT = 3
 const HURT_ANIM_FPS = 10.0
 
+var shape_shifted := false
+@onready var player_soldier_sprite: AnimatedSprite2D = %PlayerSoldierSprite
+
+
 func _physics_process(_delta: float) -> void:
 		state = ("walk" if is_moving else "idle") if state!="hurt" else "hurt"
 		
@@ -27,7 +31,10 @@ func _physics_process(_delta: float) -> void:
 			elif direction.x < 0:
 				direction_state = "left"
 		
-		play(direction_state+"_"+state)
+		if shape_shifted:
+			player_soldier_sprite.play(direction_state+"_"+state)
+		else:
+			play(direction_state+"_"+state)
 
 func play_hurt_animation():
 	state = "hurt"

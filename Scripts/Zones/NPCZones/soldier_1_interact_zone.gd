@@ -1,6 +1,5 @@
-extends BaseZone
+class_name SoldierOneInteractZone extends BaseZone
 
-# TODO: Connect from player to shapeshift
 signal on_knock_out_solider
 
 @onready var section_five: SectionFive = get_tree().current_scene.get_node("%Section5")

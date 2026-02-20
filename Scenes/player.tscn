@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c5p4dkuvp1obu" path="res://Scripts/Player/player_hitbox.gd" id="2_fkybt"]
 [ext_resource type="Script" uid="uid://dbnnl7mfesu32" path="res://Scripts/Player/npc_interact_field.gd" id="2_vgqql"]
 [ext_resource type="Script" uid="uid://5xd6f71nyxtq" path="res://Scripts/Player/player_sprite.gd" id="3_6t5aa"]
+[ext_resource type="SpriteFrames" uid="uid://c3iuqco6vyxsv" path="res://Assets/SpriteFrames/soldier_1.tres" id="6_x3wgy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vgqql"]
 radius = 18.0
@@ -528,10 +529,15 @@ shape = SubResource("CircleShape2D_v0iea")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=1043335760]
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_8erm5")
-animation = &"back_hurt"
+animation = &"front_idle"
 autoplay = "front_idle"
-frame = 2
-frame_progress = 1.0
 script = ExtResource("3_6t5aa")
+
+[node name="PlayerSoldierSprite" type="AnimatedSprite2D" parent="." unique_id=1617465139]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -32)
+sprite_frames = ExtResource("6_x3wgy")
+animation = &"front_idle"
 
 [connection signal="body_entered" from="NPCInteractField" to="NPCInteractField" method="_on_body_entered"]

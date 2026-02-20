@@ -9,6 +9,13 @@ class_name SectionFive extends Node
 @onready var objective_shapeshift: Objective = %Objective14_Shapeshift
 
 @onready var alleyway_marker: Marker2D = %AlleywayMarker
+@onready var player: Player = %Player
+@onready var soldier_1npc: NPC = %Soldier1NPC
+
+
+func _ready() -> void:
+	var soldier_interact_zone: SoldierOneInteractZone = soldier_1npc.get_child(-1)
+	soldier_interact_zone.on_knock_out_solider.connect(player.shape_shift_into_soldier)
 
 func has_reached_alleyway(npc_pos: Vector2):
 	return npc_pos.distance_to(alleyway_marker.global_position) < 50

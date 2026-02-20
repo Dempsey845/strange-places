@@ -302,6 +302,7 @@ position = Vector2(620, 1608)
 chase_target = NodePath("../Player")
 
 [node name="Soldier1NPC" parent="PropLayerWalls/PropLayer" unique_id=619229384 node_paths=PackedStringArray("chase_target", "fixed_wander_points") instance=ExtResource("15_oeip8")]
+unique_name_in_owner = true
 position = Vector2(672, -1448)
 chase_target = NodePath("../Player")
 fixed_wander_points = NodePath("../../../FixedWanderPoints/MilitaryEntrancePoints")
@@ -607,11 +608,10 @@ unique_name_in_owner = true
 script = ExtResource("13_nnt18")
 objective_text = "Return the zombie to the sheriff."
 
-[node name="Objective11_PurchaseBatteries" type="Node" parent="ObjectiveManager" unique_id=685317374 node_paths=PackedStringArray("next_objective")]
+[node name="Objective11_PurchaseBatteries" type="Node" parent="ObjectiveManager" unique_id=685317374]
 unique_name_in_owner = true
 script = ExtResource("13_nnt18")
 objective_text = "Go to the hardware store for batteries."
-next_objective = NodePath("../Objective12_FindASolider")
 
 [node name="Objective12_FindASolider" type="Node" parent="ObjectiveManager" unique_id=634359122 node_paths=PackedStringArray("next_objective")]
 unique_name_in_owner = true
