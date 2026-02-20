@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cn3dhsj4sji6y" path="res://Assets/NPC/scout.png" id="1_bcmry"]
 [ext_resource type="Script" uid="uid://cm88td4pcm6ww" path="res://Scripts/Zones/NPCZones/justin_interact_zone.gd" id="2_6wq1r"]
+[ext_resource type="Texture2D" uid="uid://dlqgfqsqtjo1" path="res://Assets/Circle.png" id="3_0f4on"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bcmry"]
 radius = 28.01785
@@ -119,3 +120,11 @@ sprite_frames = SubResource("SpriteFrames_0n2dv")
 animation = &"idle_phone"
 autoplay = "idle_phone"
 frame_progress = 0.93567425
+
+[node name="ShadowCircle" type="Sprite2D" parent="." unique_id=890158859]
+modulate = Color(0, 0, 0, 0.24313726)
+z_index = -1
+z_as_relative = false
+position = Vector2(0, -7)
+scale = Vector2(0.9010002, 0.9010002)
+texture = ExtResource("3_0f4on")

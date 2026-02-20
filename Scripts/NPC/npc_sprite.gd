@@ -18,6 +18,8 @@ var state = "idle"
 
 var enabled := true
 
+var bonus_state: String = ""
+
 func _physics_process(_delta: float) -> void:
 	if not enabled:
 		return
@@ -25,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 	state = ("walk" if is_moving else "idle") if state!="melee_attack" else "melee_attack"
 	_update_direction()
 	
-	play(direction_state+"_"+state)
+	play(direction_state+"_"+state+bonus_state)
 
 func _update_direction():
 	if (abs(direction.y) > abs(direction.x)):

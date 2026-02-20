@@ -20,16 +20,16 @@ var shape_shifted := false
 func _physics_process(_delta: float) -> void:
 		state = ("walk" if is_moving else "idle") if state!="hurt" else "hurt"
 		
-		if (abs(direction.y) > abs(direction.x)):
-			if direction.y > 0:
-				direction_state = "front"
-			elif direction.y < 0:
-				direction_state = "back"
-		else:
+		if (abs(direction.x) > abs(direction.y)):
 			if direction.x > 0:
 				direction_state = "right"
 			elif direction.x < 0:
 				direction_state = "left"
+		else:
+			if direction.y > 0:
+				direction_state = "front"
+			elif direction.y < 0:
+				direction_state = "back"
 		
 		if shape_shifted:
 			player_soldier_sprite.play(direction_state+"_"+state)

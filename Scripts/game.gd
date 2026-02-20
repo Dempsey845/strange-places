@@ -1,10 +1,25 @@
 class_name GameManager extends Node2D
 
-@onready var bounds = [%TopLeft, %TopRight, %BottomLeft, %BottomRight]
+@onready var g_bounds: Array[Marker2D] = [%TopLeft, %TopRight, %BottomLeft, %BottomRight]
+@onready var m_bounds: Array[Marker2D] = [%M_TopLeft, %M_TopRight, %M_BottomLeft, %M_BottomRight]
 
 @export var hot_spots: HotSpots
 
-func get_random_nav_point(nav_agent: NavigationAgent2D) -> Vector2:
+enum BOUND
+{
+	General,
+	MilitaryBase
+}
+
+func get_random_nav_point(nav_agent: NavigationAgent2D, bound: BOUND) -> Vector2:
+	var bounds: Array[Marker2D]
+	
+	match bound:
+		BOUND.General:
+			bounds = g_bounds
+		BOUND.MilitaryBase:
+			bounds = m_bounds
+	
 	var top_left = bounds[0].global_position
 	var top_right = bounds[1].global_position
 	var bottom_left = bounds[2].global_position

@@ -9,7 +9,7 @@ radius = 21.0
 
 [node name="Soldier1NPC" unique_id=801174763 instance=ExtResource("1_3gthh")]
 can_agro = false
-fixed_wander = true
+wander_type = 3
 
 [node name="NPCSprite" parent="." index="0" unique_id=1134249631]
 position = Vector2(-1, -29)
@@ -17,8 +17,9 @@ sprite_frames = ExtResource("2_2oyio")
 animation = &"left_hurt"
 autoplay = ""
 frame = 2
+frame_progress = 0.0
 
-[node name="Soldier1InteractZone" type="Area2D" parent="." index="8" unique_id=1621757435]
+[node name="Soldier1InteractZone" type="Area2D" parent="." index="10" unique_id=1621757435]
 collision_layer = 0
 collision_mask = 4
 script = ExtResource("3_2oyio")

@@ -20,10 +20,14 @@ func _ready() -> void:
 	pass
 
 func start_dialogue(dialogue: Dialogue, _prev_dialogue: Dialogue = null) -> void:
+	if len(NPCInteractField.npcs_chasing_player) > 0:
+		await NPCInteractField.Instance.on_no_npcs_chasing_player
+		
 	on_dialogue_started.emit(dialogue)
 	dialogue_animation_player.play("open")
 	dialogue.has_started = true
 	in_dialogue = true
+	
 	await dialogue_animation_player.animation_finished
 	
 	for text in dialogue.dialogue_text:

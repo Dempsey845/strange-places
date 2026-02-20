@@ -27,6 +27,7 @@
 [ext_resource type="Script" uid="uid://ebv4l5o4unk4" path="res://Scripts/Dialogue/dialogue.gd" id="16_iivbl"]
 [ext_resource type="PackedScene" uid="uid://dn5yo4qcm6n3m" path="res://Scenes/NPC/izzy_npc.tscn" id="16_lmoi6"]
 [ext_resource type="Texture2D" uid="uid://cbveykd5d477h" path="res://Assets/UI/FreshandModern.png" id="16_nnt18"]
+[ext_resource type="PackedScene" uid="uid://86lpvi115p7h" path="res://Scenes/NPC/soldier_2npc.tscn" id="17_6uxt2"]
 [ext_resource type="Script" uid="uid://gk1keustn15a" path="res://Scripts/Inventory/inventory_manager.gd" id="18_exi56"]
 [ext_resource type="Script" uid="uid://br4cycy4t73xr" path="res://Scripts/Dialogue/Sections/section_3.gd" id="22_cwurv"]
 [ext_resource type="Texture2D" uid="uid://b05ihr7so4klf" path="res://Assets/spaceship (2).png" id="23_mg4q0"]
@@ -37,6 +38,7 @@
 [ext_resource type="Script" uid="uid://b2qlnfedo5qg" path="res://Scripts/Dialogue/Sections/section_6.gd" id="28_i26dy"]
 [ext_resource type="Script" uid="uid://b27a7u3wdein1" path="res://Scripts/chased_label.gd" id="31_d3cha"]
 [ext_resource type="Texture2D" uid="uid://dokbkruexcrcm" path="res://Assets/Tilesets/23_MIlitary_Base_32x32.png" id="32_ese38"]
+[ext_resource type="Script" uid="uid://bu1j3sejvrf6i" path="res://Scripts/NPC/soldier_manager.gd" id="39_ym3tv"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_d3cha"]
 a = Vector2(0, 2336)
@@ -73,7 +75,7 @@ size = Vector2(157, 482)
 size = Vector2(989, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_85qyi"]
-size = Vector2(662, 137)
+size = Vector2(681, 137)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iivbl"]
 size = Vector2(160, 124)
@@ -88,10 +90,10 @@ size = Vector2(137, 213)
 size = Vector2(231, 119)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6uxt2"]
-size = Vector2(42, 167.75)
+size = Vector2(42, 174.875)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d3cha"]
-size = Vector2(42, 159.75)
+size = Vector2(35, 143.125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i26dy"]
 size = Vector2(129, 155)
@@ -213,6 +215,24 @@ position = Vector2(1785, 62)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/RightBound" unique_id=212426461]
 shape = SubResource("SegmentShape2D_d3cha")
 
+[node name="MilitaryBounds" type="Node2D" parent="." unique_id=2372305]
+
+[node name="M_TopLeft" type="Marker2D" parent="MilitaryBounds" unique_id=2075904103]
+unique_name_in_owner = true
+position = Vector2(67, -4191)
+
+[node name="M_TopRight" type="Marker2D" parent="MilitaryBounds" unique_id=853485434]
+unique_name_in_owner = true
+position = Vector2(1751, -4192)
+
+[node name="M_BottomLeft" type="Marker2D" parent="MilitaryBounds" unique_id=666084289]
+unique_name_in_owner = true
+position = Vector2(48, -1820)
+
+[node name="M_BottomRight" type="Marker2D" parent="MilitaryBounds" unique_id=1896394594]
+unique_name_in_owner = true
+position = Vector2(1767, -1810)
+
 [node name="Zones" type="Node2D" parent="." unique_id=255276061]
 
 [node name="CoffeeAndTeaZone" type="Area2D" parent="Zones" unique_id=1545030206 node_paths=PackedStringArray("buy_a_coffee_objective", "dialogue_manager", "dialogue_jimmy_1", "deliver_beans_objective", "dialogue_player_2", "inventory_manager")]
@@ -307,7 +327,7 @@ inventory_manager = NodePath("../../../../InventoryManager")
 [node name="Player" parent="PropLayerWalls/PropLayer" unique_id=1960526676 node_paths=PackedStringArray("dialogue_manager") instance=ExtResource("3_wrm1d")]
 unique_name_in_owner = true
 y_sort_enabled = true
-position = Vector2(1067, -1367)
+position = Vector2(1135, 1202)
 dialogue_manager = NodePath("../../../DialogueManager")
 
 [node name="Camera2D" type="Camera2D" parent="PropLayerWalls/PropLayer/Player" unique_id=1984419301]
@@ -344,6 +364,73 @@ fixed_wander_points = NodePath("../../../FixedWanderPoints/MilitaryEntrancePoint
 [node name="IzzyNPC" parent="PropLayerWalls/PropLayer" unique_id=773578879 node_paths=PackedStringArray("section_six") instance=ExtResource("16_lmoi6")]
 position = Vector2(978, -1463)
 section_six = NodePath("../../../DialogueManager/Section6")
+
+[node name="Soldiers" type="Node2D" parent="PropLayerWalls/PropLayer" unique_id=371362933]
+
+[node name="Soldier2NPC" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=29928710 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(896, -2052)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC2" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=980632845 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(1371, -2049)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC3" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=1136991038 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(917, -2251)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC4" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=1067220375 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(194, -2122)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC5" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=578302135 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(373, -2767)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC6" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=1505375641 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(1671, -2761)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC7" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=1831524822 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(1657, -3437)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC8" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=82275422 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(844, -3460)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC9" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=1189768139 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(393, -3460)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC10" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=312234548 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(601, -3811)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC11" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=1732790369 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(1280, -3971)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC12" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=465775785 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(906, -4048)
+chase_target = NodePath("../../Player")
+
+[node name="Soldier2NPC13" parent="PropLayerWalls/PropLayer/Soldiers" unique_id=1773132297 node_paths=PackedStringArray("chase_target") instance=ExtResource("17_6uxt2")]
+top_level = true
+position = Vector2(470, -4120)
+chase_target = NodePath("../../Player")
 
 [node name="UpperPropLayer" type="TileMapLayer" parent="PropLayerWalls" unique_id=908213664]
 tile_map_data = PackedByteArray("AAAVACUAAAAaABAAAAAVACYAAAAaABEAAAAWACUAAAAbABAAAAAWACYAAAAbABEAAAAOACEAAwAPABgAAAAOACIAAwAPABkAAAAPACEAAwAQABgAAAAPACIAAwAQABkAAAAsACUAAwARABgAAAAsACYAAwARABkAAAAtACUAAwASABgAAAAtACYAAwASABkAAAARAAAABAAYAFwAAAARAAEABAAYAF0AAAARAAIABAAYAF4AAAARAAMABAAYAF8AAAASAAAABAAZAFwAAAASAAEABAAZAF0AAAASAAIABAAZAF4AAAASAAMABAAZAF8AAAATAAAABAAaAFwAAAATAAEABAAaAF0AAAATAAIABAAaAF4AAAATAAMABAAaAF8AAAAUAAAABAAbAFwAAAAUAAEABAAbAF0AAAAUAAIABAAbAF4AAAAUAAMABAAbAF8AAAARAAQABAAYAGAAAAASAAQABAAZAGAAAAANAAEABAAbAGMAAAANAAIABAAbAGQAAAANAAMABAAbAGUAAAAOAAEABAAcAGMAAAAOAAIABAAcAGQAAAAOAAMABAAcAGUAAAAPAAEABAAdAGMAAAAPAAIABAAdAGQAAAAPAAMABAAdAGUAAAAQAAIABAAeAGQAAAAQAAMABAAeAGUAAAAMAAIABAAaAGQAAAAMAAMABAAaAGUAAAASAAkABAABAO4AAAASAAoABAABAKMAAAASAAsABAABAKQAAAATAAkABAACAKIAAAATAAoABAACAKMAAAATAAsABAACAKQAAAAUAAkABAADAKIAAAAUAAoABAADAKMAAAAUAAsABAADAKQAAAAVAAoABAAEAKMAAAAVAAsABAAEAKQAAAAWAAoABAAFAKMAAAAWAAsABAAFAKQAAAABAAkABAAAAOAAAAABAAoABAAAAOEAAAACAAgABAABAN8AAAACAAkABAABAOAAAAACAAoABAABAOEAAAADAAgABAACAN8AAAADAAkABAACAOAAAAADAAoABAACAOEAAAAEAAgABAADAN8AAAAEAAkABAADAOAAAAAEAAoABAADAOEAAAAFAAgABAAEAN8AAAAFAAkABAAEAOAAAAAFAAoABAAEAOEAAAAUAAUABAAWAKoAAAAUAAYABAAWAKsAAAAVAAUABAAWAKoAAAAVAAYABAAWAKsAAAAEAAUABAAWAKoAAAAEAAYABAAWAKsAAAASAAUABAAbALIAAAASAAYABAAbALMAAAATAAUABAAcALIAAAATAAYABAAcALMAAAAWAAMABAAWALAAAAAWAAQABAAWALEAAAAXAAMABAAXALAAAAAXAAQABAAXALEAAAAYAAkABAAZAJkAAAAYAAoABAAZAJoAAAAYAAcABAAZAJkAAAAYAAgABAAZAJoAAAARAAsABAAZAJkAAAARAAwABAAZAJoAAAAHAAoABAAaAJwAAAAHAAsABAAaAJ0AAAAHAAwABAAaAJoAAAAHAA0ABAAaAJsAAAAIAAwABAAbAJoAAAAIAA0ABAAbAJsAAAAJAAwABAAcAJoAAAAJAA0ABAAcAJsAAAAIAAoABAAbAJwAAAAIAAsABAAbAJ0AAAAJAAoABAAcAJwAAAAJAAsABAAcAJ0AAAAVAA0ABAACAFkAAAAVAA4ABAACAFoAAAAWAA0ABAADAFkAAAAWAA4ABAADAFoAAAAXAA0ABAAEAFkAAAAXAA4ABAAEAFoAAAATAA0ABAABAFkAAAATAA4ABAABAFoAAAARAA0AAAAOAGAAAAARAA4AAAAOAGEAAAAuACEAAAAPAFoAAAAuACIAAAAPAFsAAAAvACEAAAAQAFoAAAAvACIAAAAQAFsAAAACADYABgAPAAcAAAACADcABgAPAAgAAAACADgABgAPAAkAAAACADkABgAPAAoAAAACADoABgAPAAsAAAACADsABgAPAAwAAAADADcABgAQAAgAAAADADgABgAQAAkAAAADADkABgAQAAcAAAADADoABgAQAAsAAAADADsABgAQAAwAAAAEADcABgARAAgAAAAEADgABgARAAkAAAAEADkABgARAAcAAAAEADoABgARAAsAAAAEADsABgARAAwAAAAFADcABgASAAgAAAAFADgABgASAAkAAAAFADkABgASAAcAAAAFADoABgASAAsAAAAFADsABgASAAwAAAAGADcABgATAAgAAAAGADgABgATAAkAAAAGADkABgATAAoAAAAGADoABgATAAsAAAAGADsABgATAAwAAAAHADcABgAUAAgAAAAHADgABgAUAAkAAAAHADkABgAUAAoAAAAHADoABgAUAAsAAAAHADsABgAUAAwAAAAIADgABgAVAAkAAAAIADkABgAVAAoAAAAIADoABgAVAAsAAAAxANj/AQAXAGQAAAAxANn/AQAXAGUAAAAxANr/AQAXAGYAAAAxANv/AQAXAGcAAAAxANz/AQAXAGgAAAAxAN3/AQAXAGkAAAAxAN7/AQAXAGoAAAAxAN//AQAXAGsAAAAxAOD/AQAXAGwAAAAxAOH/AQAXAG0AAAAxAOL/AQAXAG4AAAAyANj/AQAYAGQAAAAyANn/AQAYAGUAAAAyANr/AQAYAGYAAAAyANv/AQAYAGcAAAAyANz/AQAYAGgAAAAyAN3/AQAYAGkAAAAyAN7/AQAYAGoAAAAyAN//AQAYAGsAAAAyAOD/AQAYAGwAAAAyAOH/AQAYAG0AAAAyAOL/AQAYAG4AAAAzANj/AQAZAGQAAAAzANn/AQAZAGUAAAAzANr/AQAZAGYAAAAzANv/AQAZAGcAAAAzANz/AQAZAGgAAAAzAN3/AQAZAGkAAAAzAN7/AQAZAGoAAAAzAN//AQAZAGsAAAAzAOD/AQAZAGwAAAAzAOH/AQAZAG0AAAAzAOL/AQAZAG4AAAA0ANj/AQAaAGQAAAA0ANn/AQAaAGUAAAA0ANr/AQAaAGYAAAA0ANv/AQAaAGcAAAA0ANz/AQAaAGgAAAA0AN3/AQAaAGkAAAA0AN7/AQAaAGoAAAA0AN//AQAaAGsAAAA0AOD/AQAaAGwAAAA0AOH/AQAaAG0AAAA0AOL/AQAaAG4AAAA1ANj/AQAbAGQAAAA1ANn/AQAbAGUAAAA1ANr/AQAbAGYAAAA1ANv/AQAbAGcAAAA1ANz/AQAbAGgAAAA1AN3/AQAbAGkAAAA1AN7/AQAbAGoAAAA1AN//AQAbAGsAAAA1AOD/AQAbAGwAAAA1AOH/AQAbAG0AAAA1AOL/AQAbAG4AAAA2ANj/AQAcAGQAAAA2ANn/AQAcAGUAAAA2ANr/AQAcAGYAAAA2ANv/AQAcAGcAAAA2ANz/AQAcAGgAAAA2AN3/AQAcAGkAAAA2AN7/AQAcAGoAAAA2AN//AQAcAGsAAAA2AOD/AQAcAGwAAAA2AOH/AQAcAG0AAAA2AOL/AQAcAG4AAAAjAM7/AAACAFQAAAAjAM//AAACAFUAAAAjAND/AAACAFYAAAAjANH/AAACAFcAAAAkAM3/AAADAFMAAAAkAM7/AAADAFQAAAAkAM//AAADAFUAAAAkAND/AAADAFYAAAAkANH/AAADAFcAAAA=")
@@ -454,7 +541,7 @@ shape = SubResource("RectangleShape2D_ewbju")
 position = Vector2(271, 1078)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropLayerWalls/StaticBodies/MilitaryBaseBodies/FrontWallRight" unique_id=293557835]
-position = Vector2(178, 1.5)
+position = Vector2(168.5, 1.5)
 shape = SubResource("RectangleShape2D_85qyi")
 
 [node name="WallTowerA" type="StaticBody2D" parent="PropLayerWalls/StaticBodies/MilitaryBaseBodies" unique_id=671484492]
@@ -557,14 +644,14 @@ polygon = PackedVector2Array(-99, -271, -112, -240, -110, -111, -94, -97, -105, 
 position = Vector2(126, 1276)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropLayerWalls/StaticBodies/MilitaryBaseBodies/GateWall" unique_id=507071298]
-position = Vector2(-5, -36)
+position = Vector2(-5, -39.5625)
 shape = SubResource("RectangleShape2D_6uxt2")
 
 [node name="GateWall2" type="StaticBody2D" parent="PropLayerWalls/StaticBodies/MilitaryBaseBodies" unique_id=1659394484]
 position = Vector2(-68, 1276)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PropLayerWalls/StaticBodies/MilitaryBaseBodies/GateWall2" unique_id=604928626]
-position = Vector2(3, -64.75)
+position = Vector2(6.5, -56.4375)
 shape = SubResource("RectangleShape2D_d3cha")
 
 [node name="GuardBox" type="StaticBody2D" parent="PropLayerWalls/StaticBodies/MilitaryBaseBodies" unique_id=105257739]
@@ -943,8 +1030,9 @@ dialogue_text = Array[String](["Nice job Disrupto!", "Your body has fully healed
 auto_continue = false
 metadata/_custom_type_script = "uid://ebv4l5o4unk4"
 
-[node name="InventoryManager" type="Node" parent="." unique_id=1575074779]
+[node name="InventoryManager" type="Node" parent="." unique_id=1575074779 node_paths=PackedStringArray("inventory_container")]
 script = ExtResource("18_exi56")
+inventory_container = NodePath("../InventoryCanvasLayer/ItemContainer")
 metadata/_custom_type_script = "uid://gk1keustn15a"
 
 [node name="DisruptionCanvasLayer" type="CanvasLayer" parent="." unique_id=1349663912]
@@ -1089,17 +1177,35 @@ stretch_mode = 4
 root_node = NodePath("../DialogueBackground")
 libraries/ = SubResource("AnimationLibrary_exi56")
 
-[node name="Spaceship" type="Sprite2D" parent="." unique_id=242820356]
+[node name="InventoryCanvasLayer" type="CanvasLayer" parent="." unique_id=1295073355]
+
+[node name="ItemContainer" type="VBoxContainer" parent="InventoryCanvasLayer" unique_id=952319385]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -180.0
+offset_right = 85.0
+offset_bottom = 159.0
+grow_vertical = 2
+
+[node name="Spaceship" type="StaticBody2D" parent="." unique_id=1411616661]
 position = Vector2(651, -4025.0002)
 scale = Vector2(1.9101025, 1.9101025)
+
+[node name="SpaceshipSprite" type="Sprite2D" parent="Spaceship" unique_id=242820356]
+scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("23_mg4q0")
 
-[node name="Shadow" type="Sprite2D" parent="Spaceship" unique_id=1478154879]
+[node name="Shadow" type="Sprite2D" parent="Spaceship/SpaceshipSprite" unique_id=1478154879]
 modulate = Color(0, 0, 0, 0.34117648)
 z_index = -1
 position = Vector2(6.8059387, 10.470703)
 scale = Vector2(0.99999994, 0.99999994)
 texture = ExtResource("23_mg4q0")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Spaceship" unique_id=1449917171]
+polygon = PackedVector2Array(-0.52352905, 58.112305, 5.75885, 41.882813, 21.464813, 26.176758, 28.79425, 38.741455, 40.83551, 19.894287, 40.83551, 8.376709, 27.223663, -18.846924, 17.80008, -13.088135, -0.52352905, -24.605957, -19.370697, -13.088135, -23.55896, -19.370605, -29.84134, -17.800049, -41.35904, 8.376709, -41.35904, 19.894287, -30.364868, 38.741455, -22.511871, 25.653076, -6.282379, 40.835693)
 
 [node name="SheriffMarker" type="Marker2D" parent="." unique_id=615179826]
 unique_name_in_owner = true
@@ -1184,6 +1290,10 @@ position = Vector2(1615, -1394)
 
 [node name="Point20" type="Marker2D" parent="FixedWanderPoints/MilitaryEntrancePoints" unique_id=310130017]
 position = Vector2(1729, -1394)
+
+[node name="SoldierManager" type="Node" parent="." unique_id=1504218345 node_paths=PackedStringArray("soldiers")]
+script = ExtResource("39_ym3tv")
+soldiers = NodePath("../PropLayerWalls/PropLayer/Soldiers")
 
 [connection signal="on_death" from="PropLayerWalls/PropLayer/Player" to="." method="_on_player_on_death"]
 

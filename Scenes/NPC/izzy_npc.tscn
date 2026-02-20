@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://3troclpmicra" path="res://Assets/NPC/izzy_idle.png" id="1_1nclc"]
 [ext_resource type="Script" uid="uid://dgb0sjj60k8yo" path="res://Scripts/Zones/NPCZones/izzy_npc.gd" id="1_gtb1f"]
+[ext_resource type="Texture2D" uid="uid://dlqgfqsqtjo1" path="res://Assets/Circle.png" id="3_msohw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gtb1f"]
 atlas = ExtResource("1_1nclc")
@@ -67,7 +68,15 @@ position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_alb2a")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.62423414
+frame_progress = 0.47751698
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=195782669]
 shape = SubResource("CircleShape2D_ke3rg")
+
+[node name="ShadowCircle" type="Sprite2D" parent="." unique_id=253201502]
+modulate = Color(0, 0, 0, 0.24313726)
+z_index = -1
+z_as_relative = false
+position = Vector2(0, -7)
+scale = Vector2(0.9010002, 0.9010002)
+texture = ExtResource("3_msohw")

@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://df2py7h5uydua"]
+
+[ext_resource type="PackedScene" uid="uid://bxqv1p486yic8" path="res://Scenes/Projectiles/base_projectile.tscn" id="1_7m1h6"]
+[ext_resource type="Texture2D" uid="uid://dlqgfqsqtjo1" path="res://Assets/Circle.png" id="2_7x4tj"]
+
+[node name="BulletProjectile" unique_id=1149445516 instance=ExtResource("1_7m1h6")]
+
+[node name="BulletSprite" type="Sprite2D" parent="." index="2" unique_id=1497525222]
+modulate = Color(1, 0.8392157, 0.2901961, 1)
+scale = Vector2(0.27553558, 0.27553558)
+texture = ExtResource("2_7x4tj")

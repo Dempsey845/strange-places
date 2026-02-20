@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bkfbu536g6ulu" path="res://Assets/NPC/Postman/Modern_Exteriors_Characters_Postman_32x32_1.png" id="1_acqhf"]
 [ext_resource type="Script" uid="uid://c14t1ek3mwvsj" path="res://Scripts/NPC/npc.gd" id="1_xxsvc"]
 [ext_resource type="Script" uid="uid://ci2b5qjnakigr" path="res://Scripts/NPC/npc_sprite.gd" id="3_g6unj"]
+[ext_resource type="Texture2D" uid="uid://dlqgfqsqtjo1" path="res://Assets/Circle.png" id="4_h1ryf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8gudg"]
 atlas = ExtResource("1_acqhf")
@@ -592,6 +593,14 @@ frame = 5
 frame_progress = 1.0
 script = ExtResource("3_g6unj")
 
+[node name="ShadowCircle" type="Sprite2D" parent="NPCSprite" unique_id=1289965389]
+modulate = Color(0, 0, 0, 0.24313726)
+z_index = -1
+z_as_relative = false
+position = Vector2(0, 21)
+scale = Vector2(0.9010002, 0.9010002)
+texture = ExtResource("4_h1ryf")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=86087389]
 position = Vector2(1, -13)
 shape = SubResource("CircleShape2D_qi7up")
@@ -620,6 +629,14 @@ unique_name_in_owner = true
 one_shot = true
 
 [node name="MeleeAttackCheckTimer" type="Timer" parent="." unique_id=430027691]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="FireTimer" type="Timer" parent="." unique_id=2034082177]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ShootCooldownTimer" type="Timer" parent="." unique_id=1767293519]
 unique_name_in_owner = true
 one_shot = true
 

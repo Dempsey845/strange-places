@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d005t6vptwmmv" path="res://Assets/NPC/pofficer1.png" id="1_7w8hg"]
 [ext_resource type="Script" uid="uid://cekvp2tujn37x" path="res://Scripts/Zones/NPCZones/sheriff_interact_zone.gd" id="1_skrcf"]
+[ext_resource type="Texture2D" uid="uid://dlqgfqsqtjo1" path="res://Assets/Circle.png" id="3_kht7v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7w8hg"]
 atlas = ExtResource("1_7w8hg")
@@ -66,7 +67,15 @@ script = ExtResource("1_skrcf")
 position = Vector2(0, -32)
 sprite_frames = SubResource("SpriteFrames_w34k7")
 autoplay = "default"
-frame_progress = 0.10784662
+frame_progress = 0.6558775
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=72453269]
 shape = SubResource("CircleShape2D_7w8hg")
+
+[node name="ShadowCircle" type="Sprite2D" parent="." unique_id=13169348]
+modulate = Color(0, 0, 0, 0.24313726)
+z_index = -1
+z_as_relative = false
+position = Vector2(0, -7)
+scale = Vector2(0.9010002, 0.9010002)
+texture = ExtResource("3_kht7v")

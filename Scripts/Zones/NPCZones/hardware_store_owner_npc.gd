@@ -6,7 +6,7 @@ extends BaseZone
 
 var interacted := false
 
-const BATTERY_ITEM = preload("uid://b3fqitrebj3ri")
+const BATTERY_ITEM = preload("res://Scenes/Inventory/battery_item.tscn")
 
 func _ready() -> void:
 	super._ready()
